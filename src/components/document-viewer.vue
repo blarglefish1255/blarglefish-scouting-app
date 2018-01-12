@@ -1,13 +1,13 @@
 <template>
-<div>
-  <button
-    class="btn btn-default"
-    @click="updateDisplayGM(false)"
-  >
-    Go Back
-  </button>
-  <p>Place Game Manual Here!!!</p>
-</div>
+  <div>
+    <button
+      class="btn btn-default"
+      @click="updateDisplayGM(false)"
+    >
+      Go Back
+    </button>
+    <p>Place Game Manual Here!!!</p>
+  </div>
 </template>
 
 <script>

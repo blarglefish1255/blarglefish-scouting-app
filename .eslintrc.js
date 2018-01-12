@@ -1,39 +1,44 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   parserOptions: {
+    parser: 'babel-eslint',
     sourceType: 'module'
   },
   env: {
-    browser: true
+    browser: true,
+    node: true
   },
-  // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
   extends: [
-    'standard'
-  ],
-  // required to lint *.vue files
-  plugins: [
-    'html',
-    'import'
+    'standard',
+    'plugin:vue/recommended',
+    'prettier',
+    'prettier/standard'
   ],
   globals: {
-    'cordova': true,
-    'DEV': true,
-    'PROD': true,
-    '__THEME': true
+    __static: true
   },
-  // add your custom rules here
-  'rules': {
-    // allow paren-less arrow functions
-    'arrow-parens': 0,
-    'one-var': 0,
-    'import/first': 0,
-    'import/named': 2,
-    'import/namespace': 2,
-    'import/default': 2,
-    'import/export': 2,
+  // Rules lists:
+  // - https://eslint.org/docs/rules/
+  // - https://github.com/vuejs/eslint-plugin-vue#bulb-rules
+  rules: {
+    // requires that only const and let are allowed
+    'no-var': 'error',
+    // allow async-await
+    'generator-star-spacing': 'off',
     // allow debugger during development
-    'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
-    'brace-style': [2, 'stroustrup', { 'allowSingleLine': true }]
-  }
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    // HACK: Turning this off until false positives are fixed
+    'vue/valid-v-on': 'off'
+  },
+  overrides: [
+    {
+      files: ['src/**/*'],
+      rules: {
+        'no-console':
+          process.env.NODE_ENV === 'production'
+            ? ['error', { allow: ['warn', 'error'] }]
+            : 'off'
+      }
+    }
+  ]
 }

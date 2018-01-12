@@ -1,32 +1,32 @@
 <template>
-<div>
-  <div
-    v-if="!displayScouting && !displayGM && !displaySettings"
-    class="center center-vertical"
-  >
-    <button
-      class="btn btn-primary"
-      @click="updateDisplayScouting(true)"
+  <div>
+    <div
+      v-if="!displayScouting && !displayGM && !displaySettings"
+      class="center center-vertical"
     >
-      Scouting
-    </button>
-    <button
-      class="btn btn-danger"
-      @click="updateDisplayGM(true)"
-    >
-      Game Manual
-    </button>
-    <button
-      class="btn btn-success"
-      @click="updateDisplaySettings(true)"
-    >
-      Settings
-    </button>
+      <button
+        class="btn btn-primary"
+        @click="updateDisplayScouting(true)"
+      >
+        Scouting
+      </button>
+      <button
+        class="btn btn-danger"
+        @click="updateDisplayGM(true)"
+      >
+        Game Manual
+      </button>
+      <button
+        class="btn btn-success"
+        @click="updateDisplaySettings(true)"
+      >
+        Settings
+      </button>
+    </div>
+    <Scouting v-if="displayScouting"/>
+    <DocumentViewer v-if="displayGM"/>
+    <Settings v-if="displaySettings"/>
   </div>
-  <Scouting v-if="displayScouting"/>
-  <DocumentViewer v-if="displayGM"/>
-  <Settings v-if="displaySettings"/>
-</div>
 </template>
 
 
@@ -41,7 +41,7 @@ export default {
     DocumentViewer,
     Settings
   },
-  data () {
+  data() {
     return {}
   },
   computed: {
@@ -54,7 +54,6 @@ export default {
 </script>
 
 <style>
-
 .center {
   margin: auto;
   width: 25%;
