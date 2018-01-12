@@ -8,18 +8,21 @@
         class="btn btn-primary"
         @click="updateDisplayScouting(true)"
       >
+        <AppIcon icon="table"/>
         Scouting
       </button>
       <button
         class="btn btn-danger"
         @click="updateDisplayGM(true)"
       >
+        <AppIcon icon="file-text"/>
         Game Manual
       </button>
       <button
         class="btn btn-success"
         @click="updateDisplaySettings(true)"
       >
+        <AppIcon icon="cog"/>
         Settings
       </button>
     </div>
