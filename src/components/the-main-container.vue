@@ -4,27 +4,24 @@
       v-if="!displayScouting && !displayGM && !displaySettings"
       class="center center-vertical"
     >
-      <button
+      <q-btn
         class="btn btn-primary"
         @click="updateDisplayScouting(true)"
       >
-        <AppIcon icon="table"/>
         Scouting
-      </button>
-      <button
+      </q-btn>
+      <q-btn
         class="btn btn-danger"
         @click="updateDisplayGM(true)"
       >
-        <AppIcon icon="file-text"/>
         Game Manual
-      </button>
-      <button
+      </q-btn>
+      <q-btn
         class="btn btn-success"
         @click="updateDisplaySettings(true)"
       >
-        <AppIcon icon="cog"/>
         Settings
-      </button>
+      </q-btn>
     </div>
     <Scouting v-if="displayScouting"/>
     <DocumentViewer v-if="displayGM"/>
@@ -34,12 +31,14 @@
 
 
 <script>
+import { QBtn } from 'quasar'
 import Scouting from './scouting'
 import DocumentViewer from './document-viewer'
 import Settings from './settings'
 import { interfaceGetters, interfaceActions } from '@state/helpers'
 export default {
   components: {
+    QBtn,
     Scouting,
     DocumentViewer,
     Settings
@@ -66,4 +65,3 @@ export default {
   margin-top: 50%;
 }
 </style>
-

@@ -3,11 +3,6 @@ import Vue from 'vue'
 import Quasar from 'quasar'
 import store from './state/store'
 
-import BootstrapVue from 'bootstrap-vue'
-import camelCase from 'lodash/camelCase'
-import upperFirst from 'lodash/upperFirst'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 // import 'quasar-extras/material-icons'
 // import 'quasar-extras/ionicons'
 import 'quasar-extras/fontawesome'
@@ -26,21 +21,7 @@ require(`quasar/dist/quasar.${__THEME}.css`)
 // require(`quasar/dist/quasar.ie`)
 // require(`quasar/dist/quasar.ie.${__THEME}.css`)
 
-const requireComponent = require.context(
-  './components',
-  false,
-  /app-[\w-]+\.(js|vue)$/
-)
-requireComponent.keys().forEach(fileName => {
-  const componentConfig = requireComponent(fileName)
-  const componentName = upperFirst(
-    camelCase(fileName.replace(/^\.\//, '').replace(/\.\w+$/, ''))
-  )
-  Vue.component(componentName, componentConfig.default || componentConfig)
-})
-
 Vue.config.productionTip = false
-Vue.use(BootstrapVue)
 Vue.use(Quasar) // Install Quasar Framework
 
 if (__THEME === 'mat') {
