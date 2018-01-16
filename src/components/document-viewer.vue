@@ -1,18 +1,20 @@
 <template>
   <div>
-    <button
-      class="btn btn-default"
+    <q-btn
+      icon="fa-chevron-left"
       @click="updateDisplayGM(false)"
-    >
-      Go Back
-    </button>
+    />
     <p>Place Game Manual Here!!!</p>
   </div>
 </template>
 
 <script>
+import { QBtn } from 'quasar'
 import { interfaceActions } from '@state/helpers'
 export default {
+  components: {
+    QBtn
+  },
   methods: {
     ...interfaceActions
   }
