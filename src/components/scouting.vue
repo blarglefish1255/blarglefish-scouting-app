@@ -1,5 +1,28 @@
 <template>
   <div>
+    <q-tabs>
+      <!-- Tabs - notice slot="title" -->
+      <q-route-tab
+        slot="title"
+        to="/game-scouting"
+        exact
+        icon="fa-microphone"
+      />
+      <q-route-tab
+        default
+        slot="title"
+        to="/research"
+        exact
+        icon="fa-clipboard"
+      />
+      <q-route-tab
+        slot="title"
+        to="/floor-scouting"
+        exact
+        icon="fa-clipboard"
+      />
+
+    </q-tabs>
     <q-btn
       icon="fa-chevron-left"
       @click="updateDisplayScouting(false)"
@@ -15,7 +38,7 @@
 </template>
 
 <script>
-import { QBtn, QSearch } from 'quasar'
+import { QBtn, QRouteTab, QTabs, QTabPane, QSearch } from 'quasar'
 import GameScouting from './game-scouting'
 import FloorScouting from './floor-scouting'
 import Research from './research'
@@ -23,6 +46,9 @@ import { interfaceActions } from '@state/helpers'
 export default {
   components: {
     QBtn,
+    QRouteTab,
+    QTabs,
+    QTabPane,
     QSearch,
     GameScouting,
     FloorScouting,
