@@ -7,7 +7,7 @@
       <!-- toggles QLayout left side -->
       <q-btn
         flat
-        @click="$router.push('/')"
+        @click="$router.push('/settings')"
       >
         <q-icon
           name="fa-chevron-left"
@@ -15,15 +15,9 @@
         />
       </q-btn>
       <q-toolbar-title>
-        Settings
+        Templates
       </q-toolbar-title>
     </q-toolbar>
-    <q-btn
-      @click="$router.push('/templates')"
-      full-width
-    >
-      Templates
-    </q-btn>
   </q-layout>
 </template>
 

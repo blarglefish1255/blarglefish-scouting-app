@@ -31,6 +31,7 @@ export default new VueRouter({
     { path: '/game-scouting', component: load('game-scouting') },
     { path: '/scouting', component: load('scouting') },
     { path: '/settings', component: load('settings') },
+    { path: '/templates', component: load('templates') },
 
     // Always leave this last one
     { path: '*', component: load('error-404') } // Not found

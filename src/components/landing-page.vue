@@ -1,21 +1,12 @@
 <template>
   <q-layout view="hhr lpR ffr">
-    <q-btn
-      class="btn btn-primary"
-      @click="$router.push('/scouting')"
-    >
+    <q-btn @click="$router.push('/scouting')">
       Scouting
     </q-btn>
-    <q-btn
-      class="btn btn-danger"
-      @click="$router.push('/game-manual')"
-    >
+    <q-btn @click="$router.push('/game-manual')">
       Game Manual
     </q-btn>
-    <q-btn
-      class="btn btn-success"
-      @click="$router.push('/settings')"
-    >
+    <q-btn @click="$router.push('/settings')" >
       Settings
     </q-btn>
   </q-layout>

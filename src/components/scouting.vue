@@ -82,6 +82,7 @@ import {
   QTabs,
   QTabPane,
   QToolbar,
+  QToolbarTitle,
   QSearch
 } from 'quasar'
 export default {
@@ -96,6 +97,7 @@ export default {
     QTabs,
     QTabPane,
     QToolbar,
+    QToolbarTitle,
     QSearch
   },
   data() {
