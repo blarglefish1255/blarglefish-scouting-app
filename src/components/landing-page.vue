@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <q-layout view="hhr lpR ffr">
     <q-btn
       class="btn btn-primary"
       @click="$router.push('/scouting')"
@@ -18,15 +18,16 @@
     >
       Settings
     </q-btn>
-  </div>
+  </q-layout>
 </template>
 
 
 <script>
-import { QBtn } from 'quasar'
+import { QBtn, QLayout } from 'quasar'
 export default {
   components: {
-    QBtn
+    QBtn,
+    QLayout
   }
 }
 </script>

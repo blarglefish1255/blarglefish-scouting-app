@@ -1,7 +1,10 @@
 <template>
   <div>
     <q-layout>
-      <q-toolbar color="dark">
+      <q-toolbar
+        slot="header"
+        color="dark"
+      >
         <!-- toggles QLayout left side -->
         <q-btn
           flat
@@ -16,67 +19,80 @@
           Scouting
         </q-toolbar-title>
       </q-toolbar>
+
       <q-search
         v-model="queryText"
         icon="fa-search"
       />
-    </q-layout>
-    <footer>
+
       <q-tabs
-        slot="navigation"
+        slot="footer"
+        position="bottom"
         align="center"
         color="dark"
       >
         <!-- Tabs - notice slot="title" -->
-        <q-route-tab
+        <q-tab
           slot="title"
-          to="/game-scouting"
-          exact
+          name="game-scouting"
           icon="fa-microphone"
         >
           Game Scouting
-        </q-route-tab>
-        <q-route-tab
+        </q-tab>
+        <q-tab
           default
           slot="title"
-          to="/research"
-          exact
+          name="research"
           icon="fa-clipboard"
         >
           Research
-        </q-route-tab>
-        <q-route-tab
+        </q-tab>
+        <q-tab
           slot="title"
-          to="/floor-scouting"
-          exact
+          name="floor-scouting"
           icon="fa-clipboard"
         >
           Floor Scouting
-        </q-route-tab>
+        </q-tab>
+
+        <q-tab-pane name="game-scouting">
+          <GameScouting/>
+        </q-tab-pane>
+        <q-tab-pane name="research">
+          <Research/>
+        </q-tab-pane>
+        <q-tab-pane name="floor-scouting">
+          <FloorScouting/>
+        </q-tab-pane>
 
       </q-tabs>
-    </footer>
+    </q-layout>
   </div>
 </template>
 
 <script>
+import FloorScouting from './floor-scouting'
+import GameScouting from './game-scouting'
+import Research from './research'
 import {
   QBtn,
   QIcon,
   QLayout,
-  QRouteTab,
+  QTab,
   QTabs,
   QTabPane,
   QToolbar,
   QSearch
 } from 'quasar'
-import { interfaceActions } from '@state/helpers'
 export default {
   components: {
+    FloorScouting,
+    GameScouting,
+    Research,
     QBtn,
     QIcon,
     QLayout,
-    QRouteTab,
+    QTab,
     QTabs,
     QTabPane,
     QToolbar,
@@ -86,9 +102,6 @@ export default {
     return {
       queryText: ''
     }
-  },
-  methods: {
-    ...interfaceActions
   }
 }
 </script>
