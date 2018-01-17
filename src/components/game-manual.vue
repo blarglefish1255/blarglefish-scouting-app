@@ -12,7 +12,7 @@
         />
       </q-btn>
       <q-toolbar-title>
-        Settings
+        Game Manual
       </q-toolbar-title>
     </q-toolbar>
   </div>

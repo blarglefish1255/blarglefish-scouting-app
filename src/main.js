@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 import Quasar from 'quasar'
+import router from './router'
 import store from './state/store'
 
 // import 'quasar-extras/material-icons'
@@ -33,6 +34,7 @@ Quasar.start(() => {
   new Vue({
     el: '#q-app',
     store,
+    router,
     render: h => h(require('./App').default)
   })
 })

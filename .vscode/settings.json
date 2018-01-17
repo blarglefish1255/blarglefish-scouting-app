@@ -24,8 +24,7 @@
     "**/cache": true,
     "**/test_assets": true,
     "**/node_modules": true,
-    "**/lcov-report": true,
-    "**/build": true
+    "**/lcov-report": true
   },
   // ===
   // GENERAL FORMATTING
