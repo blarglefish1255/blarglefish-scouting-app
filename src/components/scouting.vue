@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-layout>
+    <q-layout view="hHr LpR lFf">
       <q-toolbar
         slot="header"
         color="dark"
