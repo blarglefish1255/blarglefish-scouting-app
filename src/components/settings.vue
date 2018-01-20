@@ -2,7 +2,7 @@
   <q-layout>
     <q-toolbar
       slot="header"
-      color="dark"
+      :color="theme"
     >
       <!-- toggles QLayout left side -->
       <q-btn
@@ -47,6 +47,7 @@ import {
   QToolbar,
   QToolbarTitle
 } from 'quasar'
+import { interfaceGetters, interfaceActions } from '@state/helpers'
 export default {
   components: {
     QBtn,
@@ -57,6 +58,12 @@ export default {
     QLayout,
     QToolbar,
     QToolbarTitle
+  },
+  computed: {
+    ...interfaceGetters
+  },
+  methods: {
+    ...interfaceActions
   }
 }
 </script>

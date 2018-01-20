@@ -1,13 +1,26 @@
 <template>
   <q-layout view="hhr lpR ffr">
+    <q-toolbar
+      slot = "header"
+      :color="theme">
+      <q-toolbar-title>
+        BlargleFish Scouting App
+      </q-toolbar-title>
+    </q-toolbar>
     <div class="absolute-center">
-      <q-btn @click="$router.push('/scouting')">
+      <q-btn
+        :color="theme"
+        @click="$router.push('/scouting')">
         Scouting
       </q-btn>
-      <q-btn @click="$router.push('/game-manual')">
+      <q-btn
+        :color="theme"
+        @click="$router.push('/game-manual')">
         Game Manual
       </q-btn>
-      <q-btn @click="$router.push('/settings')" >
+      <q-btn
+        :color="theme"
+        @click="$router.push('/settings')" >
         Settings
       </q-btn>
     </div>
@@ -16,11 +29,20 @@
 
 
 <script>
-import { QBtn, QLayout } from 'quasar'
+import { QBtn, QLayout, QToolbar, QToolbarTitle } from 'quasar'
+import { interfaceGetters, interfaceActions } from '@state/helpers'
 export default {
   components: {
     QBtn,
-    QLayout
+    QLayout,
+    QToolbar,
+    QToolbarTitle
+  },
+  computed: {
+    ...interfaceGetters
+  },
+  methods: {
+    ...interfaceActions
   }
 }
 </script>

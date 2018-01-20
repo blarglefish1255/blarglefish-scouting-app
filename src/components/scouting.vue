@@ -3,7 +3,7 @@
     <q-layout view="hHr LpR lFf">
       <q-toolbar
         slot="header"
-        color="dark"
+        :color="theme"
       >
         <!-- toggles QLayout left side -->
         <q-btn
@@ -31,7 +31,7 @@
         slot="footer"
         position="bottom"
         align="center"
-        color="dark"
+        :color="theme"
       >
         <q-route-tab
           icon="fa-gamepad"
@@ -71,6 +71,7 @@ import {
   QToolbarTitle,
   QSearch
 } from 'quasar'
+import { interfaceActions, interfaceGetters } from '@state/helpers'
 export default {
   components: {
     QBtn,
@@ -87,6 +88,12 @@ export default {
     return {
       queryText: ''
     }
+  },
+  computed: {
+    ...interfaceGetters
+  },
+  methods: {
+    ...interfaceActions
   }
 }
 </script>

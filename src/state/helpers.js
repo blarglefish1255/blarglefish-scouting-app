@@ -13,7 +13,9 @@ export const researchActions = mapActions([
 ])
 
 export const interfaceGetters = {
-  ...mapState({})
+  ...mapState({
+    theme: state => state.interface.theme
+  })
 }
 
-export const interfaceActions = mapActions([])
+export const interfaceActions = mapActions(['updateTheme'])
