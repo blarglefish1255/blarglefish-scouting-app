@@ -25,60 +25,46 @@
         icon="fa-search"
       />
 
+      <router-view/>
+
       <q-tabs
         slot="footer"
         position="bottom"
         align="center"
         color="dark"
       >
-        <!-- Tabs - notice slot="title" -->
-        <q-tab
+        <q-route-tab
+          icon="fa-gamepad"
+          to="/game-scouting"
+          label="game-scouting"
+          exact
           slot="title"
-          name="game-scouting"
+        />
+        <q-route-tab
+          icon="fa-database"
+          to="/research"
+          label="research"
+          exact
+          slot="title"
+        />
+        <q-route-tab
           icon="fa-microphone"
-        >
-          Game Scouting
-        </q-tab>
-        <q-tab
-          default
+          to="/floor-scouting"
+          label="research"
+          exact
           slot="title"
-          name="research"
-          icon="fa-clipboard"
-        >
-          Research
-        </q-tab>
-        <q-tab
-          slot="title"
-          name="floor-scouting"
-          icon="fa-clipboard"
-        >
-          Floor Scouting
-        </q-tab>
-
-        <q-tab-pane name="game-scouting">
-          <GameScouting/>
-        </q-tab-pane>
-        <q-tab-pane name="research">
-          <Research/>
-        </q-tab-pane>
-        <q-tab-pane name="floor-scouting">
-          <FloorScouting/>
-        </q-tab-pane>
-
+        />
       </q-tabs>
     </q-layout>
   </div>
 </template>
 
 <script>
-import FloorScouting from './floor-scouting'
-import GameScouting from './game-scouting'
-import Research from './research'
 import {
   QBtn,
   QIcon,
   QLayout,
-  QTab,
+  QRouteTab,
   QTabs,
   QTabPane,
   QToolbar,
@@ -87,13 +73,10 @@ import {
 } from 'quasar'
 export default {
   components: {
-    FloorScouting,
-    GameScouting,
-    Research,
     QBtn,
     QIcon,
     QLayout,
-    QTab,
+    QRouteTab,
     QTabs,
     QTabPane,
     QToolbar,

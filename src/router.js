@@ -25,13 +25,40 @@ export default new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
 
   routes: [
-    { path: '/', component: load('landing-page') },
-    { path: '/floor-scouting', component: load('floor-scouting') },
-    { path: '/game-manual', component: load('game-manual') },
-    { path: '/game-scouting', component: load('game-scouting') },
-    { path: '/scouting', component: load('scouting') },
-    { path: '/settings', component: load('settings') },
-    { path: '/templates', component: load('templates') },
+    {
+      path: '/',
+      component: load('landing-page')
+    },
+    {
+      path: '/game-manual',
+      component: load('game-manual')
+    },
+    {
+      path: '/scouting',
+      component: load('scouting'),
+      children: [
+        {
+          path: '/game-scouting',
+          component: load('game-scouting')
+        },
+        {
+          path: '/research',
+          component: load('research')
+        },
+        {
+          path: '/floor-scouting',
+          component: load('floor-scouting')
+        }
+      ]
+    },
+    {
+      path: '/settings',
+      component: load('settings')
+    },
+    {
+      path: '/templates',
+      component: load('templates')
+    },
 
     // Always leave this last one
     { path: '*', component: load('error-404') } // Not found
