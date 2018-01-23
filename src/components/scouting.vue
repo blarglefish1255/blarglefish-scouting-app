@@ -50,7 +50,7 @@
         <q-route-tab
           icon="fa-microphone"
           to="/floor-scouting"
-          label="research"
+          label="floor-scouting"
           exact
           slot="title"
         />

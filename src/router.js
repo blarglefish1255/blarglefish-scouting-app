@@ -26,6 +26,10 @@ export default new VueRouter({
 
   routes: [
     {
+      path: '/scouting',
+      redirect: '/research'
+    },
+    {
       path: '/',
       component: load('landing-page')
     },
@@ -58,6 +62,10 @@ export default new VueRouter({
     {
       path: '/templates',
       component: load('templates')
+    },
+    {
+      path: '/team-info',
+      component: load('team-info')
     },
 
     // Always leave this last one

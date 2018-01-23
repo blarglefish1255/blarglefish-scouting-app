@@ -7,10 +7,10 @@
     <q-list-header>Teams</q-list-header>
     <q-list
       v-for="team of teams"
-      :key="team.id"
+      :key="team.key"
       highlight
     >
-      <q-item>
+      <q-item @click="continueToTeamInfo(team)">
         {{ team.nickname }}
       </q-item>
     </q-list>
@@ -59,6 +59,10 @@ export default {
     ...researchActions,
     updateTeamsList() {
       this.getTeamList(this.currentPageNumber - 1)
+    },
+    continueToTeamInfo(team) {
+      this.updateCurrentSelectedTeam(team)
+      this.$router.push('/team-info')
     }
   }
 }
