@@ -4,7 +4,7 @@ import Quasar from 'quasar'
 import router from './router'
 import store from './state/store'
 
-// import 'quasar-extras/material-icons'
+import 'quasar-extras/material-icons'
 // import 'quasar-extras/ionicons'
 import 'quasar-extras/fontawesome'
 // import 'quasar-extras/animate'

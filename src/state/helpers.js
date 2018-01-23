@@ -1,29 +1,15 @@
 import { mapState, mapActions } from 'vuex'
 
-export const eventGetters = {
+export const researchGetters = {
   ...mapState({
-    events: state => state.events.eventsList,
-    teams: state => state.events.teamsList
+    teams: state => state.research.teamsList
   })
 }
 
-export const eventActions = mapActions(['getTeamList', 'getEventList'])
+export const researchActions = mapActions(['getTeamList'])
 
 export const interfaceGetters = {
-  ...mapState({
-    displayScouting: state => state.interface.displayScouting,
-    displayGM: state => state.interface.displayGM,
-    displaySettings: state => state.interface.displaySettings
-  })
+  ...mapState({})
 }
 
-export const interfaceActions = mapActions([
-  'updateDisplayScouting',
-  'updateDisplayGM',
-  'updateDisplaySettings'
-])
-
-export const internetConnectionGetters = mapActions([
-  'initInternetConnectionChecker',
-  'checkInternetConnection'
-])
+export const interfaceActions = mapActions([])
