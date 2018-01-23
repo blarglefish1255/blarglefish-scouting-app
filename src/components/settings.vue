@@ -18,20 +18,41 @@
         Settings
       </q-toolbar-title>
     </q-toolbar>
-    <q-btn
-      @click="$router.push('/templates')"
-      full-width
-    >
-      Templates
-    </q-btn>
+    <q-card>
+      <q-card-title>
+        Scouting
+      </q-card-title>
+      <q-card-main>
+        <q-btn
+          @click="$router.push('/templates')"
+          color="dark"
+          class="full-width"
+          full-width
+        >
+          Templates
+        </q-btn>
+      </q-card-main>
+    </q-card>
   </q-layout>
 </template>
 
 <script>
-import { QBtn, QIcon, QLayout, QToolbar, QToolbarTitle } from 'quasar'
+import {
+  QBtn,
+  QCard,
+  QCardMain,
+  QCardTitle,
+  QIcon,
+  QLayout,
+  QToolbar,
+  QToolbarTitle
+} from 'quasar'
 export default {
   components: {
     QBtn,
+    QCard,
+    QCardMain,
+    QCardTitle,
     QIcon,
     QLayout,
     QToolbar,
