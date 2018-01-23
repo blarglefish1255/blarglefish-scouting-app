@@ -7,10 +7,7 @@ export const eventGetters = {
   })
 }
 
-export const eventActions = mapActions([
-  'getTeamList',
-  'getEventList'
-])
+export const eventActions = mapActions(['getTeamList', 'getEventList'])
 
 export const interfaceGetters = {
   ...mapState({
@@ -24,4 +21,9 @@ export const interfaceActions = mapActions([
   'updateDisplayScouting',
   'updateDisplayGM',
   'updateDisplaySettings'
+])
+
+export const internetConnectionGetters = mapActions([
+  'initInternetConnectionChecker',
+  'checkInternetConnection'
 ])
