@@ -2,7 +2,7 @@ import { LocalStorage } from 'quasar'
 
 export default {
   state: {
-    theme: LocalStorage.get.item('interface.theme') || 'tertiary',
+    theme: LocalStorage.get.item('interface.theme') || 'dark',
     themeSelections: [
       {
         // color store here
