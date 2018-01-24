@@ -44,6 +44,7 @@
           v-model="theme"
           separator
           :options="options"
+          @change="updateTheme"
         />
       </q-card-main>
     </q-card>
@@ -77,15 +78,18 @@ export default {
   },
   data() {
     return {
-      select: 'dark',
       options: [
         {
           label: 'Dark',
           value: 'dark'
         },
         {
+          label: 'Purple',
+          value: 'deep-purple-8'
+        },
+        {
           label: 'Light',
-          value: 'light'
+          value: 'grey-5'
         },
         {
           label: 'Green',
@@ -97,7 +101,7 @@ export default {
         },
         {
           label: 'Red',
-          value: 'negative'
+          value: 'red-9'
         },
         {
           label: 'Yellow',
