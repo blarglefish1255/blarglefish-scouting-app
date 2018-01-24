@@ -25,12 +25,26 @@
       <q-card-main>
         <q-btn
           @click="$router.push('/templates')"
-          color="dark"
+          :color="theme"
           class="full-width"
           full-width
         >
           Templates
         </q-btn>
+      </q-card-main>
+    </q-card>
+
+    <q-card>
+      <q-card-title>
+        App
+      </q-card-title>
+      <q-card-main>
+        <q-select
+          stack-label="Themes"
+          v-model="theme"
+          separator
+          :options="options"
+        />
       </q-card-main>
     </q-card>
   </q-layout>
@@ -45,7 +59,8 @@ import {
   QIcon,
   QLayout,
   QToolbar,
-  QToolbarTitle
+  QToolbarTitle,
+  QSelect
 } from 'quasar'
 import { interfaceGetters, interfaceActions } from '@state/helpers'
 export default {
@@ -57,7 +72,39 @@ export default {
     QIcon,
     QLayout,
     QToolbar,
-    QToolbarTitle
+    QToolbarTitle,
+    QSelect
+  },
+  data() {
+    return {
+      select: 'dark',
+      options: [
+        {
+          label: 'Dark',
+          value: 'dark'
+        },
+        {
+          label: 'Light',
+          value: 'light'
+        },
+        {
+          label: 'Green',
+          value: 'positive'
+        },
+        {
+          label: 'Blue',
+          value: 'primary'
+        },
+        {
+          label: 'Red',
+          value: 'negative'
+        },
+        {
+          label: 'Yellow',
+          value: 'warning'
+        }
+      ]
+    }
   },
   computed: {
     ...interfaceGetters
