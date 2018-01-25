@@ -12,6 +12,17 @@ export const researchActions = mapActions([
   'updateCurrentSelectedTeam'
 ])
 
+export const scoutingGetters = {
+  ...mapState({
+    scoutedTeams: state => state.scouting.scoutedTeams
+  })
+}
+
+export const scoutingActions = mapActions([
+  'initScoutedTeams',
+  'addScoutedTeams'
+])
+
 export const interfaceGetters = {
   ...mapState({
     theme: state => state.interface.theme

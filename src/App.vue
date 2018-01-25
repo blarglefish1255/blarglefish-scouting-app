@@ -5,13 +5,15 @@
 </template>
 
 <script>
-import { templatesActions } from '@state/helpers'
+import { templatesActions, scoutingActions } from '@state/helpers'
 export default {
   created() {
     this.initTemplates()
+    this.initScoutedTeams()
   },
   methods: {
-    ...templatesActions
+    ...templatesActions,
+    ...scoutingActions
   }
 }
 </script>
