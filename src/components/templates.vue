@@ -35,13 +35,9 @@
       <q-btn
         :color="theme"
         @click="createTemplate"
+        icon="add"
         round
-      >
-        <q-icon
-          name="fa-plus"
-          size="20px"
-        />
-      </q-btn>
+      />
     </q-fixed-position>
   </q-layout>
 </template>
@@ -111,7 +107,7 @@ export default {
     },
     continueToTemplate(template) {
       this.updateCurrentTemplate(template)
-      this.$router.push('/template-setup')
+      this.$router.push('/template-editor')
     }
   }
 }

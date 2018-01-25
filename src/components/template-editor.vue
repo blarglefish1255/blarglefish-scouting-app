@@ -1,0 +1,135 @@
+<template>
+  <q-layout view="hHr LpR lFf">
+    <q-toolbar
+      slot="header"
+      :color="theme"
+    >
+      <q-btn
+        flat
+        @click="backToTemplates"
+      >
+        <q-icon
+          name="fa-chevron-left"
+          size="20px"
+        />
+      </q-btn>
+      <q-toolbar-title> {{ currentTemplate.title }} </q-toolbar-title>
+    </q-toolbar>
+
+    <TemplateElements
+      v-if="currentTemplate.elements.length"
+      :elements="currentTemplate.elements"
+    />
+    <p
+      v-else
+      class="absolute-center"
+    >
+      Template Empty
+    </p>
+
+    <q-fixed-position
+      corner="bottom-right"
+      :offset="[18, 18]"
+    >
+      <q-fab
+        :color="theme"
+        direction="up"
+      >
+        <q-fab-action
+          color="orange"
+          icon="fa-sticky-note-o"
+        >
+          <q-tooltip
+            anchor="center left"
+            self="center right"
+            :offset="[20, 0]"
+          >
+            Add Note
+          </q-tooltip>
+        </q-fab-action>
+
+        <q-fab-action
+          color="blue"
+          icon="fa-clock-o"
+        >
+          <q-tooltip
+            anchor="center left"
+            self="center right"
+            :offset="[20, 0]"
+          >
+            Add Stopwatch
+          </q-tooltip>
+        </q-fab-action>
+        <q-fab-action
+          color="green"
+          icon="fa-list"
+        >
+          <q-tooltip
+            anchor="center left"
+            self="center right"
+            :offset="[20, 0]"
+          >
+            Add Selector
+          </q-tooltip>
+        </q-fab-action>
+        <q-fab-action
+          color="dark"
+          icon="fa-check-square"
+        >
+          <q-tooltip
+            anchor="center left"
+            self="center right"
+            :offset="[20, 0]"
+          >
+            Add Checkbox
+          </q-tooltip>
+        </q-fab-action>
+      </q-fab>
+    </q-fixed-position>
+  </q-layout>
+</template>
+
+<script>
+import TemplateElements from './template-elements'
+import {
+  QBtn,
+  QFab,
+  QFabAction,
+  QFixedPosition,
+  QIcon,
+  QLayout,
+  QToolbar,
+  QToolbarTitle,
+  QTooltip
+} from 'quasar'
+import {
+  interfaceGetters,
+  templatesGetters,
+  templatesActions
+} from '@state/helpers'
+export default {
+  components: {
+    QBtn,
+    QIcon,
+    QFab,
+    QFabAction,
+    QFixedPosition,
+    QLayout,
+    QToolbar,
+    QToolbarTitle,
+    QTooltip,
+    TemplateElements
+  },
+  computed: {
+    ...interfaceGetters,
+    ...templatesGetters
+  },
+  methods: {
+    ...templatesActions,
+    backToTemplates() {
+      this.updateCurrentTemplate(null)
+      this.$router.push('/templates')
+    }
+  }
+}
+</script>
