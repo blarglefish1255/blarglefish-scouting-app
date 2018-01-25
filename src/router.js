@@ -67,7 +67,10 @@ export default new VueRouter({
       path: '/team-info',
       component: load('team-info')
     },
-
+    {
+      path: '/template-setup',
+      component: load('template-setup')
+    },
     // Always leave this last one
     { path: '*', component: load('error-404') } // Not found
   ]

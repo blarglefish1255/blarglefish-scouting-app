@@ -1,10 +1,9 @@
 <template>
-  <q-layout>
+  <q-layout view="hHr LpR lFf">
     <q-toolbar
       slot="header"
       color="dark"
     >
-      <!-- toggles QLayout left side -->
       <q-btn
         flat
         @click="$router.push('/settings')"
@@ -18,18 +17,102 @@
         Templates
       </q-toolbar-title>
     </q-toolbar>
+
+    <q-list
+      v-for="template of templates"
+      :key="template.id"
+      highlight
+    >
+      <q-item @click="continueToTemplate(template)">
+        {{ template.title }}
+      </q-item>
+    </q-list>
+
+    <q-fixed-position
+      corner="bottom-right"
+      :offset="[18, 18]"
+    >
+      <q-btn
+        :color="theme"
+        @click="createTemplate"
+        round
+      >
+        <q-icon
+          name="fa-plus"
+          size="20px"
+        />
+      </q-btn>
+    </q-fixed-position>
   </q-layout>
 </template>
 
 <script>
-import { QBtn, QIcon, QLayout, QToolbar, QToolbarTitle } from 'quasar'
+import cuid from 'cuid'
+import {
+  Dialog,
+  QBtn,
+  QFixedPosition,
+  QIcon,
+  QItem,
+  QLayout,
+  QList,
+  QToolbar,
+  QToolbarTitle
+} from 'quasar'
+import {
+  interfaceGetters,
+  templatesGetters,
+  templatesActions
+} from '@state/helpers'
 export default {
   components: {
     QBtn,
+    QFixedPosition,
     QIcon,
+    QItem,
     QLayout,
+    QList,
     QToolbar,
     QToolbarTitle
+  },
+  computed: {
+    ...interfaceGetters,
+    ...templatesGetters
+  },
+  methods: {
+    ...templatesActions,
+    createTemplate() {
+      const self = this
+      Dialog.create({
+        title: 'Create Template',
+        message: 'Create a template to use when scouting.',
+        form: {
+          title: {
+            type: 'text',
+            label: 'Title',
+            model: ''
+          }
+        },
+        buttons: [
+          'Cancel',
+          {
+            label: 'Create',
+            handler(data) {
+              let template = {
+                id: cuid(),
+                title: data.title,
+                elements: []
+              }
+              self.addTemplate(template)
+            }
+          }
+        ]
+      })
+    },
+    continueToTemplate(template) {
+      this.updateCurrentTemplate(template)
+      this.$router.push('/template-setup')
+    }
   }
 }
 </script>
