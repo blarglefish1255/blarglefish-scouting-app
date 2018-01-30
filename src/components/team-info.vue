@@ -1,6 +1,6 @@
 <template>
   <q-layout>
-    <q-toolbar color="dark">
+    <q-toolbar :color="theme">
       <q-btn
         icon="fa-chevron-left"
         @click="goBackToScouting"
@@ -14,7 +14,11 @@
 
 <script>
 import { QBtn, QLayout, QToolbar, QToolbarTitle } from 'quasar'
-import { researchGetters, researchActions } from '@state/helpers'
+import {
+  interfaceGetters,
+  researchGetters,
+  researchActions
+} from '@state/helpers'
 export default {
   components: {
     QBtn,
@@ -23,6 +27,7 @@ export default {
     QToolbarTitle
   },
   computed: {
+    ...interfaceGetters,
     ...researchGetters
   },
   methods: {

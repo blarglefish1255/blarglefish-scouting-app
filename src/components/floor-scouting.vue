@@ -5,7 +5,7 @@
       :key="team.key"
       highlight
     >
-      <q-item>
+      <q-item @click="goToTeamInfo(team)">
         {{ team.team_number + ' ' + team.nickname }}
       </q-item>
     </q-list>
@@ -46,6 +46,10 @@ export default {
   methods: {
     ...researchActions,
     ...scoutingActions,
+    goToTeamInfo(team) {
+      this.updateCurrentSelectedTeam(team)
+      this.$router.push('/team-info')
+    },
     addTeam() {
       const self = this
       Dialog.create({

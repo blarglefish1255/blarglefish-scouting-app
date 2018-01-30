@@ -5,7 +5,7 @@
       :key="team.key"
       highlight
     >
-      <q-item>
+      <q-item @click="goToTeamInfo(team)">
         {{ team.team_number + ' ' + team.nickname }}
       </q-item>
     </q-list>
@@ -29,6 +29,7 @@ import {
   interfaceGetters,
   scoutingGetters,
   scoutingActions,
+  researchGetters,
   researchActions
 } from '@state/helpers'
 export default {
@@ -41,11 +42,16 @@ export default {
   },
   computed: {
     ...interfaceGetters,
+    ...researchGetters,
     ...scoutingGetters
   },
   methods: {
     ...researchActions,
     ...scoutingActions,
+    goToTeamInfo(team) {
+      this.updateCurrentSelectedTeam(team)
+      this.$router.push('/team-info')
+    },
     addTeam() {
       const self = this
       Dialog.create({
