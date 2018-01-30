@@ -41,13 +41,6 @@
           slot="title"
         />
         <q-route-tab
-          icon="fa-database"
-          to="/research"
-          label="research"
-          exact
-          slot="title"
-        />
-        <q-route-tab
           icon="fa-microphone"
           to="/floor-scouting"
           label="floor-scouting"

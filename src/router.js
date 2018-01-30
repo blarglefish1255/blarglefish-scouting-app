@@ -27,7 +27,7 @@ export default new VueRouter({
   routes: [
     {
       path: '/scouting',
-      redirect: '/research'
+      redirect: '/game-scouting'
     },
     {
       path: '/',
@@ -44,10 +44,6 @@ export default new VueRouter({
         {
           path: '/game-scouting',
           component: load('game-scouting')
-        },
-        {
-          path: '/research',
-          component: load('research')
         },
         {
           path: '/floor-scouting',
