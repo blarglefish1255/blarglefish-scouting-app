@@ -24,9 +24,15 @@ export default {
 
       commit('INIT_SCOUTED_TEAMS', scoutedTeams)
     },
-    addScoutedTeams({ state, commit }, newScoutedTeam) {
-      commit('ADD_SCOUTED_TEAMS', newScoutedTeam)
-      LocalStorage.set('scoutedTeams', state.scoutedTeams)
+    addScoutedTeams({ state, commit, dispatch }, newScoutedTeamNumber) {
+      dispatch('getTeamAttributes', newScoutedTeamNumber).then(team => {
+        const teamObject = {
+          ...team
+        }
+
+        commit('ADD_SCOUTED_TEAMS', teamObject)
+        LocalStorage.set('scoutedTeams', state.scoutedTeams)
+      })
     }
   }
 }

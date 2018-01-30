@@ -2,11 +2,11 @@
   <div>
     <q-list
       v-for="team of scoutedTeams"
-      :key="team.id"
+      :key="team.key"
       highlight
     >
       <q-item>
-        {{ team.name }}
+        {{ team.team_number + ' ' + team.nickname }}
       </q-item>
     </q-list>
     <q-fixed-position
@@ -24,12 +24,12 @@
 </template>
 
 <script>
-import cuid from 'cuid'
 import { Dialog, QBtn, QFixedPosition, QItem, QLayout, QList } from 'quasar'
 import {
   interfaceGetters,
   scoutingGetters,
-  scoutingActions
+  scoutingActions,
+  researchActions
 } from '@state/helpers'
 export default {
   components: {
@@ -44,6 +44,7 @@ export default {
     ...scoutingGetters
   },
   methods: {
+    ...researchActions,
     ...scoutingActions,
     addTeam() {
       const self = this
@@ -54,11 +55,6 @@ export default {
             type: 'text',
             label: 'Number',
             model: ''
-          },
-          name: {
-            type: 'text',
-            label: 'Name',
-            model: ''
           }
         },
         buttons: [
@@ -66,12 +62,7 @@ export default {
           {
             label: 'Add',
             handler(data) {
-              let team = {
-                id: cuid(),
-                name: data.name,
-                number: data.number
-              }
-              self.addScoutedTeams(team)
+              self.addScoutedTeams(data.number)
             }
           }
         ]

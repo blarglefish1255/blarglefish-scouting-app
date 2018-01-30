@@ -2,7 +2,6 @@ import TheBlueAlliance from '@providers/the-blue-alliance'
 
 export default {
   state: {
-    teamsList: {},
     currentSelectedTeam: ''
   },
   mutations: {
@@ -14,10 +13,10 @@ export default {
     }
   },
   actions: {
-    getTeamList({ commit }, pageNumber) {
-      TheBlueAlliance({ endpoint: `teams/${pageNumber}` }).then(teams => {
-        commit('SET_TEAMS_LIST', teams)
-      })
+    getTeamAttributes({ state }, teamNumber) {
+      return TheBlueAlliance({ endpoint: `team/frc${teamNumber}` }).then(
+        team => team
+      )
     },
     updateCurrentSelectedTeam({ commit }, newTeam) {
       commit('SET_CURRENT_SELECTED_TEAM', newTeam)

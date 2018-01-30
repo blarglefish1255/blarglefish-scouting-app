@@ -8,7 +8,7 @@ export const researchGetters = {
 }
 
 export const researchActions = mapActions([
-  'getTeamList',
+  'getTeamAttributes',
   'updateCurrentSelectedTeam'
 ])
 
