@@ -10,6 +10,9 @@ export default {
     },
     INIT_SCOUTED_TEAMS(state, scoutedTeams) {
       state.scoutedTeams = scoutedTeams
+    },
+    CLEAR_SCOUTED_TEAMS(state) {
+      state.scoutedTeams = []
     }
   },
   actions: {
@@ -33,6 +36,10 @@ export default {
         commit('ADD_SCOUTED_TEAMS', teamObject)
         LocalStorage.set('scoutedTeams', state.scoutedTeams)
       })
+    },
+    clearScoutedTeams({ commit }) {
+      commit('CLEAR_SCOUTED_TEAMS')
+      LocalStorage.remove('scoutedTeams')
     }
   }
 }

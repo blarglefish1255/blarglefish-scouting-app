@@ -27,9 +27,17 @@
           @click="$router.push('/templates')"
           :color="theme"
           class="full-width"
-          full-width
         >
           Templates
+        </q-btn>
+      </q-card-main>
+      <q-card-main>
+        <q-btn
+          :color="theme"
+          @click="clearScoutedTeams"
+          class="full-width"
+        >
+          Clear Scouted Teams
         </q-btn>
       </q-card-main>
     </q-card>
@@ -46,6 +54,13 @@
           :options="options"
           @change="updateTheme"
         />
+        <q-btn
+          :color="theme"
+          @click="clearAllSettings"
+          class="full-width"
+        >
+          Clear App Settings
+        </q-btn>
       </q-card-main>
     </q-card>
   </q-layout>
@@ -53,6 +68,7 @@
 
 <script>
 import {
+  LocalStorage,
   QBtn,
   QCard,
   QCardMain,
@@ -63,7 +79,11 @@ import {
   QToolbarTitle,
   QSelect
 } from 'quasar'
-import { interfaceGetters, interfaceActions } from '@state/helpers'
+import {
+  interfaceGetters,
+  interfaceActions,
+  scoutingActions
+} from '@state/helpers'
 export default {
   components: {
     QBtn,
@@ -114,7 +134,12 @@ export default {
     ...interfaceGetters
   },
   methods: {
-    ...interfaceActions
+    ...scoutingActions,
+    ...interfaceActions,
+    clearAllSettings() {
+      LocalStorage.clear()
+      window.location.reload(false)
+    }
   }
 }
 </script>
