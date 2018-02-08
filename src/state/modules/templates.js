@@ -9,6 +9,9 @@ export default {
     INIT_TEMPLATES(state, templates) {
       state.templates = templates
     },
+    INIT_CURRENT_TEMPLATE(state, newValue) {
+      state.currentTemplate = newValue
+    },
     ADD_TEMPLATE(state, newTemplate) {
       state.templates.push(newTemplate)
     },
@@ -22,6 +25,7 @@ export default {
   actions: {
     initTemplates({ commit }) {
       let templates
+      let currentTemplate
 
       if (LocalStorage.get.item('templates')) {
         templates = LocalStorage.get.item('templates')
@@ -29,7 +33,14 @@ export default {
         templates = []
       }
 
+      if (LocalStorage.get.item('currentTemplate')) {
+        currentTemplate = LocalStorage.get.item('currentTemplate')
+      } else {
+        currentTemplate = null
+      }
+
       commit('INIT_TEMPLATES', templates)
+      commit('INIT_CURRENT_TEMPLATE', currentTemplate)
     },
     addTemplate({ state, commit }, newTemplate) {
       commit('ADD_TEMPLATE', newTemplate)
