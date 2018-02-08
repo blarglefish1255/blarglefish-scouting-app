@@ -50,7 +50,7 @@ export default {
       if (state.currentTemplate) {
         if (state.currentTemplate.elements) {
           commit('ADD_NEW_TEMPLATE_ELEMENT', newElement)
-          LocalStorage.set('templates', state.templates)
+          LocalStorage.set('currentTemplate', state.currentTemplate)
         }
       }
     },
