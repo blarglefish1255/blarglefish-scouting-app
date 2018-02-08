@@ -42,5 +42,6 @@ export const templatesGetters = {
 export const templatesActions = mapActions([
   'initTemplates',
   'addTemplate',
+  'addNewTemplateElement',
   'updateCurrentTemplate'
 ])

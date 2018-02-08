@@ -12,6 +12,9 @@ export default {
     ADD_TEMPLATE(state, newTemplate) {
       state.templates.push(newTemplate)
     },
+    ADD_NEW_TEMPLATE_ELEMENT(state, newElement) {
+      state.currentTemplate.elements.push(newElement)
+    },
     SET_CURRENT_TEMPLATE(state, newCurrentTemplate) {
       state.currentTemplate = newCurrentTemplate
     }
@@ -31,6 +34,14 @@ export default {
     addTemplate({ state, commit }, newTemplate) {
       commit('ADD_TEMPLATE', newTemplate)
       LocalStorage.set('templates', state.templates)
+    },
+    addNewTemplateElement({ state, commit }, newElement) {
+      if (state.currentTemplate) {
+        if (state.currentTemplate.elements) {
+          commit('ADD_NEW_TEMPLATE_ELEMENT', newElement)
+          LocalStorage.set('templates', state.templates)
+        }
+      }
     },
     updateCurrentTemplate({ commit }, newCurrentTemplate) {
       commit('SET_CURRENT_TEMPLATE', newCurrentTemplate)
