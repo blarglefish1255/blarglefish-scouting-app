@@ -38,6 +38,7 @@
         <q-fab-action
           color="orange"
           icon="fa-sticky-note-o"
+          @click="addNote"
         >
           <q-tooltip
             anchor="center left"
@@ -90,8 +91,10 @@
 </template>
 
 <script>
+import cuid from 'cuid'
 import TemplateElements from './template-elements'
 import {
+  Dialog,
   QBtn,
   QFab,
   QFabAction,
@@ -129,6 +132,34 @@ export default {
     backToTemplates() {
       this.updateCurrentTemplate(null)
       this.$router.push('/templates')
+    },
+    addNote() {
+      const self = this
+      Dialog.create({
+        title: 'Note label',
+        message: 'Add a label to the note to identify its use',
+        form: {
+          label: {
+            type: 'text',
+            label: 'Label',
+            model: ''
+          }
+        },
+        buttons: [
+          'Cancel',
+          {
+            label: 'Create',
+            handler(data) {
+              self.addNewTemplateElement({
+                id: cuid(),
+                label: data.label,
+                type: 'note',
+                value: ''
+              })
+            }
+          }
+        ]
+      })
     }
   }
 }
