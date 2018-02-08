@@ -43,8 +43,9 @@ export default {
         }
       }
     },
-    updateCurrentTemplate({ commit }, newCurrentTemplate) {
+    updateCurrentTemplate({ state, commit }, newCurrentTemplate) {
       commit('SET_CURRENT_TEMPLATE', newCurrentTemplate)
+      LocalStorage.set('currentTemplate', state.currentTemplate)
     }
   }
 }
