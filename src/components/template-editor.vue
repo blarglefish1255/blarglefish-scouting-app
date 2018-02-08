@@ -52,6 +52,7 @@
         <q-fab-action
           color="blue"
           icon="fa-clock-o"
+          @click="addStopwatch"
         >
           <q-tooltip
             anchor="center left"
@@ -183,6 +184,34 @@ export default {
                 id: cuid(),
                 label: data.label,
                 type: 'checkbox',
+                value: ''
+              })
+            }
+          }
+        ]
+      })
+    },
+    addStopwatch() {
+      const self = this
+      Dialog.create({
+        title: 'Stopwatch label',
+        message: 'Add a label to the note to identify its use.',
+        form: {
+          label: {
+            type: 'text',
+            label: 'Label',
+            model: ''
+          }
+        },
+        buttons: [
+          'Cancel',
+          {
+            label: 'Create',
+            handler(data) {
+              self.addNewTemplateElement({
+                id: cuid(),
+                label: data.label,
+                type: 'stopwatch',
                 value: ''
               })
             }
