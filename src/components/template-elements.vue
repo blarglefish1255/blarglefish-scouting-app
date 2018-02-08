@@ -4,6 +4,11 @@
       v-for="element of elements"
       :key="element.id"
     >
+      <q-checkbox
+        v-if="element.type === 'checkbox'"
+        v-model="element.value"
+        :label="element.label"
+      />
       <q-input
         v-if="element.type === 'note'"
         v-model="element.value"
@@ -14,9 +19,10 @@
 </template>
 
 <script>
-import { QInput, QLayout } from 'quasar'
+import { QCheckbox, QInput, QLayout } from 'quasar'
 export default {
   components: {
+    QCheckbox,
     QInput,
     QLayout
   },

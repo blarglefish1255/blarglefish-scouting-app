@@ -76,6 +76,7 @@
         <q-fab-action
           color="dark"
           icon="fa-check-square"
+          @click="addCheckbox"
         >
           <q-tooltip
             anchor="center left"
@@ -137,7 +138,7 @@ export default {
       const self = this
       Dialog.create({
         title: 'Note label',
-        message: 'Add a label to the note to identify its use',
+        message: 'Add a label to the note to identify its use.',
         form: {
           label: {
             type: 'text',
@@ -154,6 +155,34 @@ export default {
                 id: cuid(),
                 label: data.label,
                 type: 'note',
+                value: ''
+              })
+            }
+          }
+        ]
+      })
+    },
+    addCheckbox() {
+      const self = this
+      Dialog.create({
+        title: 'Checkbox label',
+        message: 'Add a label to the note to identify its use.',
+        form: {
+          label: {
+            type: 'text',
+            label: 'Label',
+            model: ''
+          }
+        },
+        buttons: [
+          'Cancel',
+          {
+            label: 'Create',
+            handler(data) {
+              self.addNewTemplateElement({
+                id: cuid(),
+                label: data.label,
+                type: 'checkbox',
                 value: ''
               })
             }
