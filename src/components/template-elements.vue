@@ -33,7 +33,11 @@
 <script>
 import Stopwatch from './stopwatch'
 import { QCheckbox, QInput, QLayout, QSelect } from 'quasar'
-import { interfaceGetters } from '@state/helpers'
+import {
+  interfaceGetters,
+  templatesGetters,
+  templatesActions
+} from '@state/helpers'
 export default {
   components: {
     QCheckbox,
@@ -49,7 +53,11 @@ export default {
     }
   },
   computed: {
-    ...interfaceGetters
+    ...interfaceGetters,
+    ...templatesGetters
+  },
+  methods: {
+    ...templatesActions
   }
 }
 </script>

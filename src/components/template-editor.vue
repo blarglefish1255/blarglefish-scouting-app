@@ -19,6 +19,7 @@
     <TemplateElements
       v-if="currentTemplate.elements.length"
       :elements="currentTemplate.elements"
+      :disabled="true"
     />
     <p
       v-else
@@ -127,11 +128,6 @@ export default {
     QTooltip,
     TemplateElements
   },
-  data() {
-    return {
-      selectorOptions: []
-    }
-  },
   computed: {
     ...interfaceGetters,
     ...templatesGetters
@@ -231,9 +227,9 @@ export default {
           visibleOptions: {
             type: 'chips',
             label: 'Current Options',
-            model: this.selectorOptions
+            model: []
           },
-          label: {
+          title: {
             type: 'text',
             label: 'Selector label',
             model: ''
@@ -249,29 +245,39 @@ export default {
             label: 'Create',
             preventClose: true,
             handler: data => {
-              if (this.selectorOptions.length === 0) {
+              if (data.visibleOptions.length === 0) {
                 Toast.create(
                   'Add an element to the selector before trying to create it.'
                 )
                 return
               }
 
+              let selectorOptions = []
+              for (const option of data.visibleOptions) {
+                selectorOptions.push({
+                  label: option,
+                  value: option
+                })
+              }
+
               this.addNewTemplateElement({
                 id: cuid(),
-                label: data.label,
+                label: data.title,
                 type: 'selector',
                 value: '',
-                options: this.selectorOptions
+                options: selectorOptions
               })
-              this.selectorOptions = []
+              close(() => {
+                console.log('closed')
+              })
             }
           },
           {
             label: 'Add',
             preventClose: true,
             handler: data => {
-              this.selectorOptions.push(data.option)
-              data.option = ''
+              if (!data.option) return
+              data.visibleOptions.push(data.option)
             }
           }
         ]
