@@ -1,29 +1,6 @@
 <template>
   <q-layout view="hhr lpR ffr">
-    <q-toolbar
-      slot = "header"
-      :color="theme">
-      <q-toolbar-title>
-        BlargleFish Scouting App
-      </q-toolbar-title>
-    </q-toolbar>
-    <div class="absolute-center">
-      <q-btn
-        :color="theme"
-        @click="$router.push('/scouting')">
-        Scouting
-      </q-btn>
-      <q-btn
-        :color="theme"
-        @click="$router.push('/game-manual')">
-        Game Manual
-      </q-btn>
-      <q-btn
-        :color="theme"
-        @click="$router.push('/settings')" >
-        Settings
-      </q-btn>
-    </div>
+    <Scouting/>
   </q-layout>
 </template>
 

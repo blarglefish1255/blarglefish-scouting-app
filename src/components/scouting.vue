@@ -5,18 +5,8 @@
         slot="header"
         :color="theme"
       >
-        <!-- toggles QLayout left side -->
-        <q-btn
-          flat
-          @click="$router.push('/')"
-        >
-          <q-icon
-            name="fa-chevron-left"
-            size="20px"
-          />
-        </q-btn>
         <q-toolbar-title>
-          Scouting
+          Blarglefish Scouting App
         </q-toolbar-title>
       </q-toolbar>
 
@@ -37,13 +27,6 @@
           icon="fa-gamepad"
           to="/game-scouting"
           label="game-scouting"
-          exact
-          slot="title"
-        />
-        <q-route-tab
-          icon="fa-microphone"
-          to="/floor-scouting"
-          label="floor-scouting"
           exact
           slot="title"
         />

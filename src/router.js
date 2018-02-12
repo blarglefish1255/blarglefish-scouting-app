@@ -26,28 +26,16 @@ export default new VueRouter({
 
   routes: [
     {
-      path: '/scouting',
+      path: '/',
       redirect: '/game-scouting'
     },
     {
       path: '/',
-      component: load('landing-page')
-    },
-    {
-      path: '/game-manual',
-      component: load('game-manual')
-    },
-    {
-      path: '/scouting',
       component: load('scouting'),
       children: [
         {
           path: '/game-scouting',
           component: load('game-scouting')
-        },
-        {
-          path: '/floor-scouting',
-          component: load('floor-scouting')
         }
       ]
     },
