@@ -8,6 +8,20 @@
         <q-toolbar-title>
           Blarglefish Scouting App
         </q-toolbar-title>
+        <q-btn
+          ref="target"
+          flat
+        >
+          <q-icon name="fa-ellipsis-h"/>
+          <q-popover ref="popover">
+            <q-item
+              @click="$router.push('/settings')"
+              link
+            >
+              Settings
+            </q-item>
+          </q-popover>
+        </q-btn>
       </q-toolbar>
 
       <q-search
@@ -39,7 +53,9 @@
 import {
   QBtn,
   QIcon,
+  QItem,
   QLayout,
+  QPopover,
   QRouteTab,
   QTabs,
   QTabPane,
@@ -52,7 +68,9 @@ export default {
   components: {
     QBtn,
     QIcon,
+    QItem,
     QLayout,
+    QPopover,
     QRouteTab,
     QTabs,
     QTabPane,
