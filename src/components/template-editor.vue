@@ -65,6 +65,7 @@
         <q-fab-action
           color="green"
           icon="fa-list"
+          @click="addSelector"
         >
           <q-tooltip
             anchor="center left"
@@ -105,7 +106,8 @@ import {
   QLayout,
   QToolbar,
   QToolbarTitle,
-  QTooltip
+  QTooltip,
+  Toast
 } from 'quasar'
 import {
   interfaceGetters,
@@ -125,6 +127,11 @@ export default {
     QTooltip,
     TemplateElements
   },
+  data() {
+    return {
+      selectorOptions: []
+    }
+  },
   computed: {
     ...interfaceGetters,
     ...templatesGetters
@@ -136,7 +143,6 @@ export default {
       this.$router.push('/templates')
     },
     addNote() {
-      const self = this
       Dialog.create({
         title: 'Note label',
         message: 'Add a label to the note to identify its use.',
@@ -151,8 +157,8 @@ export default {
           'Cancel',
           {
             label: 'Create',
-            handler(data) {
-              self.addNewTemplateElement({
+            handler: data => {
+              this.addNewTemplateElement({
                 id: cuid(),
                 label: data.label,
                 type: 'note',
@@ -164,7 +170,6 @@ export default {
       })
     },
     addCheckbox() {
-      const self = this
       Dialog.create({
         title: 'Checkbox label',
         message: 'Add a label to the note to identify its use.',
@@ -179,8 +184,8 @@ export default {
           'Cancel',
           {
             label: 'Create',
-            handler(data) {
-              self.addNewTemplateElement({
+            handler: data => {
+              this.addNewTemplateElement({
                 id: cuid(),
                 label: data.label,
                 type: 'checkbox',
@@ -192,7 +197,6 @@ export default {
       })
     },
     addStopwatch() {
-      const self = this
       Dialog.create({
         title: 'Stopwatch label',
         message: 'Add a label to the note to identify its use.',
@@ -207,13 +211,67 @@ export default {
           'Cancel',
           {
             label: 'Create',
-            handler(data) {
-              self.addNewTemplateElement({
+            handler: data => {
+              this.addNewTemplateElement({
                 id: cuid(),
                 label: data.label,
                 type: 'stopwatch',
                 value: ''
               })
+            }
+          }
+        ]
+      })
+    },
+    addSelector() {
+      Dialog.create({
+        title: 'Selector label',
+        message: 'Add a label to the note to identify its use.',
+        form: {
+          visibleOptions: {
+            type: 'chips',
+            label: 'Current Options',
+            model: this.selectorOptions
+          },
+          label: {
+            type: 'text',
+            label: 'Selector label',
+            model: ''
+          },
+          option: {
+            type: 'text',
+            label: 'Selector Item',
+            model: ''
+          }
+        },
+        buttons: [
+          {
+            label: 'Create',
+            preventClose: true,
+            handler: data => {
+              if (this.selectorOptions.length === 0) {
+                Toast.create(
+                  'Add an element to the selector before trying to create it.'
+                )
+                return
+              }
+
+              this.addNewTemplateElement({
+                id: cuid(),
+                label: data.label,
+                type: 'selector',
+                value: '',
+                options: this.selectorOptions
+              })
+              this.selectorOptions = []
+            }
+          },
+          {
+            label: 'Add',
+            preventClose: true,
+            handler: data => {
+              this.selectorOptions.push(data.option)
+              data.option = ''
             }
           }
         ]

@@ -78,7 +78,6 @@ export default {
   methods: {
     ...templatesActions,
     createTemplate() {
-      const self = this
       Dialog.create({
         title: 'Create Template',
         message: 'Create a template to use when scouting.',
@@ -93,13 +92,13 @@ export default {
           'Cancel',
           {
             label: 'Create',
-            handler(data) {
+            handler: data => {
               let template = {
                 id: cuid(),
                 title: data.title,
                 elements: []
               }
-              self.addTemplate(template)
+              this.addTemplate(template)
             }
           }
         ]

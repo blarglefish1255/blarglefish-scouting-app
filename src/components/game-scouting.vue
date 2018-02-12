@@ -53,7 +53,6 @@ export default {
       this.$router.push('/team-info')
     },
     addTeam() {
-      const self = this
       Dialog.create({
         title: 'Add Team',
         form: {
@@ -67,8 +66,8 @@ export default {
           'Cancel',
           {
             label: 'Add',
-            handler(data) {
-              self.addScoutedTeams(data.number)
+            handler: data => {
+              this.addScoutedTeams(data.number)
             }
           }
         ]
