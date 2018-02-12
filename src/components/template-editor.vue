@@ -233,11 +233,6 @@ export default {
             type: 'text',
             label: 'Selector label',
             model: ''
-          },
-          option: {
-            type: 'text',
-            label: 'Selector Item',
-            model: ''
           }
         },
         buttons: [
@@ -266,9 +261,6 @@ export default {
                 type: 'selector',
                 value: '',
                 options: selectorOptions
-              })
-              close(() => {
-                console.log('closed')
               })
             }
           },
