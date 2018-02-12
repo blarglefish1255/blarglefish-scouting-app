@@ -21,7 +21,8 @@ export const scoutingGetters = {
 export const scoutingActions = mapActions([
   'initScoutedTeams',
   'addScoutedTeams',
-  'clearScoutedTeams'
+  'clearScoutedTeams',
+  'addMatch'
 ])
 
 export const interfaceGetters = {

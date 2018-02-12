@@ -7,34 +7,71 @@
         flat
       />
       <q-toolbar-title> {{ currentSelectedTeam.nickname }} </q-toolbar-title>
+      <q-btn
+        flat
+        ref="target"
+      >
+        <q-icon name="fa-ellipsis-h"/>
+        <q-popover
+          ref="popover"
+        >
+          <q-list
+            style="min-width: 100px;"
+            link
+          >
+            <q-item @click="addMatchToTeam">Add Match</q-item>
+          </q-list>
+        </q-popover>
+      </q-btn>
     </q-toolbar>
-    <p>{{ currentSelectedTeam.key }}</p>
   </q-layout>
 </template>
 
 <script>
-import { QBtn, QLayout, QToolbar, QToolbarTitle } from 'quasar'
+import {
+  QBtn,
+  QIcon,
+  QItem,
+  QLayout,
+  QList,
+  QPopover,
+  QToolbar,
+  QToolbarTitle
+} from 'quasar'
 import {
   interfaceGetters,
   researchGetters,
-  researchActions
+  researchActions,
+  scoutingGetters
 } from '@state/helpers'
 export default {
   components: {
     QBtn,
+    QIcon,
+    QItem,
     QLayout,
+    QList,
+    QPopover,
     QToolbar,
     QToolbarTitle
   },
   computed: {
     ...interfaceGetters,
-    ...researchGetters
+    ...researchGetters,
+    ...scoutingGetters
   },
   methods: {
     ...researchActions,
     goBackToScouting() {
       this.updateCurrentSelectedTeam('')
       this.$router.push('/scouting')
+    },
+    addMatchToTeam() {
+      this.$refs.popover.close()
+      this.addMatch({
+        team: this.currentSelectedTeam,
+        template: this.currentSelectedTemplate
+      })
     }
   }
 }

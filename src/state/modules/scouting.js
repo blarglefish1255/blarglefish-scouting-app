@@ -13,6 +13,11 @@ export default {
     },
     CLEAR_SCOUTED_TEAMS(state) {
       state.scoutedTeams = []
+    },
+    ADD_MATCH(state, team, template) {
+      state.scoutedTeams[state.scoutedTeams.indexOf(team)].matches.push(
+        template
+      )
     }
   },
   actions: {
@@ -30,7 +35,8 @@ export default {
     addScoutedTeams({ state, commit, dispatch }, newScoutedTeamNumber) {
       dispatch('getTeamAttributes', newScoutedTeamNumber).then(team => {
         const teamObject = {
-          ...team
+          ...team,
+          matches: []
         }
 
         commit('ADD_SCOUTED_TEAMS', teamObject)
@@ -40,6 +46,9 @@ export default {
     clearScoutedTeams({ commit }) {
       commit('CLEAR_SCOUTED_TEAMS')
       LocalStorage.remove('scoutedTeams')
+    },
+    addMatch({ state, rootState, commit }, matchInformation) {
+      commit('ADD_MATCH', matchInformation.team, matchInformation.template)
     }
   }
 }
