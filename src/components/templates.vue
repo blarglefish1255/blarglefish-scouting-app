@@ -19,11 +19,11 @@
     </q-toolbar>
 
     <q-list
-      v-for="template of templates"
+      v-for="(template, index) of templates"
       :key="template.id"
       highlight
     >
-      <q-item @click="continueToTemplate(template)">
+      <q-item @click="continueToTemplate(index)">
         {{ template.title }}
       </q-item>
     </q-list>
@@ -96,7 +96,9 @@ export default {
               let template = {
                 id: cuid(),
                 title: data.title,
-                elements: []
+                elements: [],
+                active: false,
+                selected: true
               }
               this.addTemplate(template)
             }
@@ -104,8 +106,8 @@ export default {
         ]
       })
     },
-    continueToTemplate(template) {
-      this.updateCurrentTemplate(template)
+    continueToTemplate(index) {
+      this.updateCurrentSelectedTemplateIndex(index)
       this.$router.push('/template-editor')
     }
   }

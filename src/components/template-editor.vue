@@ -13,12 +13,12 @@
           size="20px"
         />
       </q-btn>
-      <q-toolbar-title> {{ currentTemplate.title }} </q-toolbar-title>
+      <q-toolbar-title> {{ templates[currentSelectedTemplateIndex].title }} </q-toolbar-title>
     </q-toolbar>
 
     <TemplateElements
-      v-if="currentTemplate.elements.length"
-      :elements="currentTemplate.elements"
+      v-if="templates[currentSelectedTemplateIndex].elements.length"
+      :elements="templates[currentSelectedTemplateIndex].elements"
       :disabled="true"
     />
     <p
@@ -132,10 +132,13 @@ export default {
     ...interfaceGetters,
     ...templatesGetters
   },
+  created() {
+    console.log(this.currentSelectedTemplateIndex)
+  },
   methods: {
     ...templatesActions,
     backToTemplates() {
-      this.updateCurrentTemplate(null)
+      this.updateCurrentTemplate(-1)
       this.$router.push('/templates')
     },
     addNote() {
