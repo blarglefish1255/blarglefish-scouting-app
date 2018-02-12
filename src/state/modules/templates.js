@@ -13,8 +13,10 @@ export default {
     ADD_TEMPLATE(state, newTemplate) {
       state.templates.push(newTemplate)
     },
-    ADD_NEW_TEMPLATE_ELEMENT(state, templateIndex, newElement) {
-      state.templates[templateIndex].elements.push(newElement)
+    ADD_NEW_TEMPLATE_ELEMENT(state, newElement) {
+      state.templates[state.currentSelectedTemplateIndex].elements.push(
+        newElement
+      )
     },
     SET_SELECTED_CURRENT_TEMPLATE(state) {
       for (const template of state.templates) {
@@ -60,10 +62,10 @@ export default {
       commit('ADD_TEMPLATE', newTemplate)
       LocalStorage.set('templates', state.templates)
     },
-    addNewTemplateElement({ state, commit }, newValue) {
-      if (state.templates[newValue.templateIndex]) {
-        if (state.templates[newValue.templateIndex].elements) {
-          commit('ADD_NEW_TEMPLATE_ELEMENT', state.index, newValue.elements)
+    addNewTemplateElement({ state, commit }, newElement) {
+      if (state.templates[state.currentSelectedTemplateIndex]) {
+        if (state.templates[state.currentSelectedTemplateIndex].elements) {
+          commit('ADD_NEW_TEMPLATE_ELEMENT', newElement)
           LocalStorage.set('templates', state.templates)
         }
       }

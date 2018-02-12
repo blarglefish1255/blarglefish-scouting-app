@@ -19,7 +19,6 @@
     <TemplateElements
       v-if="templates[currentSelectedTemplateIndex].elements.length"
       :elements="templates[currentSelectedTemplateIndex].elements"
-      :disabled="true"
     />
     <p
       v-else
@@ -131,9 +130,6 @@ export default {
   computed: {
     ...interfaceGetters,
     ...templatesGetters
-  },
-  created() {
-    console.log(this.currentSelectedTemplateIndex)
   },
   methods: {
     ...templatesActions,

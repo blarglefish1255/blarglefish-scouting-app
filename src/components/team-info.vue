@@ -32,6 +32,9 @@
           <q-icon name="fa-chevron-right"/>
         </q-btn>
       </q-card-title>
+      <q-card-main>
+        <TemplateElements :elements="templates[currentActiveTemplateIndex].elements"/>
+      </q-card-main>
     </q-card>
   </q-layout>
 </template>
@@ -41,6 +44,7 @@ import {
   QBtn,
   QCard,
   QCardTitle,
+  QCardMain,
   QIcon,
   QItem,
   QLayout,
@@ -55,13 +59,15 @@ import {
   researchGetters,
   researchActions,
   scoutingGetters,
-  scoutingActions
+  scoutingActions,
+  templatesGetters
 } from '@state/helpers'
 export default {
   components: {
     QBtn,
     QCard,
     QCardTitle,
+    QCardMain,
     QIcon,
     QItem,
     QLayout,
@@ -79,7 +85,8 @@ export default {
   computed: {
     ...interfaceGetters,
     ...researchGetters,
-    ...scoutingGetters
+    ...scoutingGetters,
+    ...templatesGetters
   },
   created() {
     console.log(this.currentSelectedTeam)
@@ -95,7 +102,7 @@ export default {
       this.$refs.popover.close()
       this.addMatch({
         team: this.currentSelectedTeam,
-        template: this.currentSelectedTemplate
+        template: this.templates[this.currentActiveTemplateIndex]
       })
     }
   }
