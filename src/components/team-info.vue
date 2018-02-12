@@ -105,7 +105,7 @@ export default {
     ...scoutingActions,
     goBackToScouting() {
       this.updateCurrentSelectedTeam('')
-      this.$router.push('/scouting')
+      this.$router.push('/')
     },
     addMatchToTeam() {
       this.$refs.popover.close()

@@ -1,7 +1,7 @@
 <template>
   <div>
     <q-list
-      v-for="team of scoutedTeams"
+      v-for="team of filteredTeams"
       :key="team.key"
       highlight
     >
@@ -39,6 +39,12 @@ export default {
     QItem,
     QLayout,
     QList
+  },
+  props: {
+    filteredTeams: {
+      type: Array,
+      required: true
+    }
   },
   computed: {
     ...interfaceGetters,

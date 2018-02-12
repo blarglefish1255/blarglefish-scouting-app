@@ -29,22 +29,7 @@
         icon="fa-search"
       />
 
-      <router-view/>
-
-      <q-tabs
-        slot="footer"
-        position="bottom"
-        align="center"
-        :color="theme"
-      >
-        <q-route-tab
-          icon="fa-gamepad"
-          to="/game-scouting"
-          label="game-scouting"
-          exact
-          slot="title"
-        />
-      </q-tabs>
+      <GameScouting :filtered-teams="filteredTeams"/>
     </q-layout>
   </div>
 </template>
@@ -63,9 +48,15 @@ import {
   QToolbarTitle,
   QSearch
 } from 'quasar'
-import { interfaceActions, interfaceGetters } from '@state/helpers'
+import {
+  interfaceActions,
+  interfaceGetters,
+  scoutingGetters
+} from '@state/helpers'
+import GameScouting from './game-scouting'
 export default {
   components: {
+    GameScouting,
     QBtn,
     QIcon,
     QItem,
@@ -84,7 +75,16 @@ export default {
     }
   },
   computed: {
-    ...interfaceGetters
+    ...interfaceGetters,
+    ...scoutingGetters,
+    filteredTeams() {
+      return this.scoutedTeams.filter(team => {
+        return (
+          team.team_number.toString().indexOf(this.queryText) !== -1 ||
+          team.nickname.indexOf(this.queryText) !== -1
+        )
+      })
+    }
   },
   methods: {
     ...interfaceActions
