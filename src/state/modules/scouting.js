@@ -14,10 +14,11 @@ export default {
     CLEAR_SCOUTED_TEAMS(state) {
       state.scoutedTeams = []
     },
-    ADD_MATCH(state, team, template) {
-      state.scoutedTeams[state.scoutedTeams.indexOf(team)].matches.push(
-        template
-      )
+    ADD_MATCH(state, matchInformation) {
+      console.log(matchInformation)
+      state.scoutedTeams[
+        state.scoutedTeams.indexOf(matchInformation.team)
+      ].matches.push(matchInformation.template)
     }
   },
   actions: {
@@ -47,8 +48,9 @@ export default {
       commit('CLEAR_SCOUTED_TEAMS')
       LocalStorage.remove('scoutedTeams')
     },
-    addMatch({ state, rootState, commit }, matchInformation) {
-      commit('ADD_MATCH', matchInformation.team, matchInformation.template)
+    addMatch({ state, commit }, matchInformation) {
+      commit('ADD_MATCH', matchInformation)
+      LocalStorage.set('scoutedTeams', state.scoutedTeams)
     }
   }
 }

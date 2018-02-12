@@ -24,12 +24,23 @@
         </q-popover>
       </q-btn>
     </q-toolbar>
+
+    <q-card v-if="currentSelectedTeam.matches.length > 0">
+      <q-card-title>
+        Match {{ selectedMatch + 1 }}
+        <q-btn flat>
+          <q-icon name="fa-chevron-right"/>
+        </q-btn>
+      </q-card-title>
+    </q-card>
   </q-layout>
 </template>
 
 <script>
 import {
   QBtn,
+  QCard,
+  QCardTitle,
   QIcon,
   QItem,
   QLayout,
@@ -38,30 +49,44 @@ import {
   QToolbar,
   QToolbarTitle
 } from 'quasar'
+import TemplateElements from './template-elements'
 import {
   interfaceGetters,
   researchGetters,
   researchActions,
-  scoutingGetters
+  scoutingGetters,
+  scoutingActions
 } from '@state/helpers'
 export default {
   components: {
     QBtn,
+    QCard,
+    QCardTitle,
     QIcon,
     QItem,
     QLayout,
     QList,
     QPopover,
     QToolbar,
-    QToolbarTitle
+    QToolbarTitle,
+    TemplateElements
+  },
+  data() {
+    return {
+      selectedMatch: 0
+    }
   },
   computed: {
     ...interfaceGetters,
     ...researchGetters,
     ...scoutingGetters
   },
+  created() {
+    console.log(this.currentSelectedTeam)
+  },
   methods: {
     ...researchActions,
+    ...scoutingActions,
     goBackToScouting() {
       this.updateCurrentSelectedTeam('')
       this.$router.push('/scouting')
