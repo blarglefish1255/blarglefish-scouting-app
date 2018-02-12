@@ -27,13 +27,22 @@
 
     <q-card v-if="currentSelectedTeam.matches.length > 0">
       <q-card-title>
+        <q-btn
+          flat
+          @click="decreaseSelectedMatch"
+        >
+          <q-icon name="fa-chevron-left"/>
+        </q-btn>
         Match {{ selectedMatch + 1 }}
-        <q-btn flat>
+        <q-btn
+          flat
+          @click="increaseSelectedMatch"
+        >
           <q-icon name="fa-chevron-right"/>
         </q-btn>
       </q-card-title>
       <q-card-main>
-        <TemplateElements :elements="templates[currentActiveTemplateIndex].elements"/>
+        <TemplateElements :elements="currentSelectedTeam.matches[selectedMatch].elements"/>
       </q-card-main>
     </q-card>
   </q-layout>
@@ -104,6 +113,14 @@ export default {
         team: this.currentSelectedTeam,
         template: this.templates[this.currentActiveTemplateIndex]
       })
+    },
+    increaseSelectedMatch() {
+      if (!this.currentSelectedTeam.matches[this.selectedMatch + 1]) return
+      this.selectedMatch = this.selectedMatch + 1
+    },
+    decreaseSelectedMatch() {
+      if (!this.currentSelectedTeam.matches[this.selectedMatch - 1]) return
+      this.selectedMatch = this.selectedMatch - 1
     }
   }
 }
