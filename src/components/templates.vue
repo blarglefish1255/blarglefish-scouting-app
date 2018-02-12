@@ -23,8 +23,29 @@
       :key="template.id"
       highlight
     >
-      <q-item @click="continueToTemplate(index)">
+      <q-item
+        @click="continueToTemplate(index)"
+      >
         {{ template.title }}
+        <q-icon
+          v-if="template.active"
+          name="fa-circle"
+        />
+        <q-btn
+          v-else
+          flat
+          ref="target"
+        >
+          <q-icon name="fa-ellipsis-h"/>
+          <q-popover ref="popover">
+            <q-item
+              link
+              @click="updateActiveTemplate(index)"
+            >
+              Make Active Template
+            </q-item>
+          </q-popover>
+        </q-btn>
       </q-item>
     </q-list>
 
@@ -52,8 +73,10 @@ import {
   QItem,
   QLayout,
   QList,
+  QPopover,
   QToolbar,
-  QToolbarTitle
+  QToolbarTitle,
+  TouchHold
 } from 'quasar'
 import {
   interfaceGetters,
@@ -68,8 +91,12 @@ export default {
     QItem,
     QLayout,
     QList,
+    QPopover,
     QToolbar,
     QToolbarTitle
+  },
+  directives: {
+    TouchHold
   },
   computed: {
     ...interfaceGetters,
@@ -77,6 +104,9 @@ export default {
   },
   methods: {
     ...templatesActions,
+    updateActiveTemplate(index) {
+      this.updateCurrentActiveTemplate(index)
+    },
     createTemplate() {
       Dialog.create({
         title: 'Create Template',

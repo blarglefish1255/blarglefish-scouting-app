@@ -35,6 +35,8 @@ export const interfaceActions = mapActions(['updateTheme'])
 
 export const templatesGetters = {
   ...mapState({
+    currentActiveTemplateIndex: state =>
+      state.templates.currentActiveTemplateIndex,
     currentSelectedTemplateIndex: state =>
       state.templates.currentSelectedTemplateIndex,
     templates: state => state.templates.templates
@@ -46,5 +48,7 @@ export const templatesActions = mapActions([
   'addTemplate',
   'addNewTemplateElement',
   'updateCurrentTemplate',
-  'updateCurrentSelectedTemplateIndex'
+  'updateCurrentSelectedTemplateIndex',
+  'updateCurrentActiveTemplate',
+  'updateCurrentActiveTemplateIndex'
 ])

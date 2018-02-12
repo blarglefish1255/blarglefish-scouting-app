@@ -2,6 +2,7 @@ import { LocalStorage } from 'quasar'
 
 export default {
   state: {
+    currentActiveTemplateIndex: 0,
     currentSelectedTemplateIndex: 0,
     templates: []
   },
@@ -26,8 +27,21 @@ export default {
       }
       state.templates[state.currentSelectedTemplateIndex].selected = true
     },
-    SET_CURRENT_TEMPLATE_INDEX(state, currentSelectedTemplateIndex) {
+    SET_ACTIVE_CURRENT_TEMPLATE(state) {
+      for (const template of state.templates) {
+        if (
+          state.templates.indexOf(template) !== state.currentActiveTemplateIndex
+        ) {
+          state.templates[state.templates.indexOf(template)].active = false
+        }
+      }
+      state.templates[state.currentActiveTemplateIndex].active = true
+    },
+    SET_SELECTED_CURRENT_TEMPLATE_INDEX(state, currentSelectedTemplateIndex) {
       state.currentSelectedTemplateIndex = currentSelectedTemplateIndex
+    },
+    SET_ACTIVE_CURRENT_TEMPLATE_INDEX(state, currentActiveTemplateIndex) {
+      state.currentActiveTemplateIndex = currentActiveTemplateIndex
     }
   },
   actions: {
@@ -54,12 +68,20 @@ export default {
         }
       }
     },
+    updateCurrentActiveTemplate({ state, commit }, index) {
+      commit('SET_ACTIVE_CURRENT_TEMPLATE_INDEX', index)
+      LocalStorage.set('activeTemplateIndex', state.currentActiveTemplateIndex)
+      commit('SET_ACTIVE_CURRENT_TEMPLATE', index)
+      LocalStorage.set('templates', state.templates)
+
+      console.log(state.templates)
+    },
     updateCurrentTemplate({ state, commit }, index) {
       commit('SET_SELECTED_CURRENT_TEMPLATE', index)
       LocalStorage.set('templates', state.templates)
     },
     updateCurrentSelectedTemplateIndex({ state, commit }, index) {
-      commit('SET_CURRENT_TEMPLATE_INDEX', index)
+      commit('SET_SELECTED_CURRENT_TEMPLATE_INDEX', index)
     }
   }
 }
