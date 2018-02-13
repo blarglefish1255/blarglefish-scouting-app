@@ -75,8 +75,6 @@ export default {
       LocalStorage.set('activeTemplateIndex', state.currentActiveTemplateIndex)
       commit('SET_ACTIVE_CURRENT_TEMPLATE', index)
       LocalStorage.set('templates', state.templates)
-
-      console.log(state.templates)
     },
     updateCurrentTemplate({ state, commit }, index) {
       commit('SET_SELECTED_CURRENT_TEMPLATE', index)

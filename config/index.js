@@ -1,15 +1,15 @@
-var path = require('path')
+let path = require('path')
 
 module.exports = {
   // Webpack aliases
   aliases: {
-
     quasar: path.resolve(__dirname, '../node_modules/quasar-framework/'),
     src: path.resolve(__dirname, '../src'),
     '@assets': path.resolve(__dirname, '../src/assets'),
     '@components': path.resolve(__dirname, '../src/components'),
     '@providers': path.resolve(__dirname, '../src/providers'),
     '@state': path.join(__dirname, '../src/state'),
+    '@services': path.join(__dirname, '../src/services'),
     variables: path.resolve(__dirname, '../src/themes/quasar.variables.styl')
   },
 

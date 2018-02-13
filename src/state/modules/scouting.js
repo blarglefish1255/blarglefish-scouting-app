@@ -15,7 +15,6 @@ export default {
       state.scoutedTeams = []
     },
     ADD_MATCH(state, matchInformation) {
-      console.log(matchInformation)
       state.scoutedTeams[
         state.scoutedTeams.indexOf(matchInformation.team)
       ].matches.push(matchInformation.template)

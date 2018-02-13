@@ -97,9 +97,6 @@ export default {
     ...scoutingGetters,
     ...templatesGetters
   },
-  created() {
-    console.log(this.currentSelectedTeam)
-  },
   methods: {
     ...researchActions,
     ...scoutingActions,

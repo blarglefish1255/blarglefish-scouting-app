@@ -18,7 +18,21 @@
               @click="$router.push('/settings')"
               link
             >
+              <q-icon
+                name="fa-cog"
+                style="margin-right: 5px"
+              />
               Settings
+            </q-item>
+            <q-item
+              @click="exportInformation"
+              link
+            >
+              <q-icon
+                name="fa-share-square"
+                style="margin-right: 5px"
+              />
+              Export
             </q-item>
           </q-popover>
         </q-btn>
@@ -36,6 +50,7 @@
 
 <script>
 import {
+  Dialog,
   QBtn,
   QIcon,
   QItem,
@@ -87,7 +102,14 @@ export default {
     }
   },
   methods: {
-    ...interfaceActions
+    ...interfaceActions,
+    exportInformation() {
+      Dialog.create({
+        title: 'Export',
+        stackButtons: true,
+        buttons: ['Close']
+      })
+    }
   }
 }
 </script>
