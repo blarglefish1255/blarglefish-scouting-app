@@ -5,7 +5,7 @@ This and others READMEs in the repo serve as living documents and the source of 
 
 ## Resources
 For more information about how what to do to the app to improve as well as where to find information,
-check [Resources.md]()
+check [Resources.md](https://github.com/blarglefish1255/blarglefish-scouting-app/blob/master/Resources.md)
 
 ## Development
 
