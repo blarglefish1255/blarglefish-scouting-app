@@ -20,6 +20,7 @@
             link
           >
             <q-item @click="addMatchToTeam">Add Match</q-item>
+            <q-item @click="exportInformation">Export</q-item>
           </q-list>
         </q-popover>
       </q-btn>
@@ -42,7 +43,10 @@
         </q-btn>
       </q-card-title>
       <q-card-main>
-        <TemplateElements :elements="currentSelectedTeam.matches[selectedMatch].elements"/>
+        <TemplateElements
+          :elements="currentSelectedTeam.matches[selectedMatch].elements"
+          @change="updateCurrentMatchElement"
+        />
       </q-card-main>
     </q-card>
   </q-layout>
@@ -50,6 +54,7 @@
 
 <script>
 import {
+  Dialog,
   QBtn,
   QCard,
   QCardTitle,
@@ -71,6 +76,7 @@ import {
   scoutingActions,
   templatesGetters
 } from '@state/helpers'
+import convert from '@services/convertToCSV'
 export default {
   components: {
     QBtn,
@@ -118,6 +124,49 @@ export default {
     decreaseSelectedMatch() {
       if (!this.currentSelectedTeam.matches[this.selectedMatch - 1]) return
       this.selectedMatch = this.selectedMatch - 1
+    },
+    updateCurrentMatchElement(event) {
+      const matchInformation = {
+        team: this.currentSelectedTeam,
+        currentMatchIndex: this.selectedMatch,
+        elementIndex: event.index,
+        value: event.value
+      }
+      this.updateMatchElement(matchInformation)
+    },
+    exportInformation() {
+      Dialog.create({
+        title: 'Export',
+        stackButtons: true,
+        buttons: [
+          {
+            label: 'Excel',
+            handler: () => {
+              let csv = ''
+              for (
+                let i = 0;
+                i < this.currentSelectedTeam.matches.length;
+                i++
+              ) {
+                csv += convert({
+                  data: this.currentSelectedTeam.matches[i].elements
+                })
+                csv += '\n'
+              }
+              let hiddenElement = document.createElement('a')
+              hiddenElement.href =
+                'data:text/csv;charset=utf-8,' + encodeURI(csv)
+              hiddenElement.target = '_blank'
+              hiddenElement.download = `${
+                this.currentSelectedTeam.team_number
+              }-${this.currentSelectedTeam.nickname}-${new Date(
+                Date.now()
+              )}.csv`
+              hiddenElement.click()
+            }
+          }
+        ]
+      })
     }
   }
 }

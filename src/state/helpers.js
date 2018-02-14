@@ -22,7 +22,8 @@ export const scoutingActions = mapActions([
   'initScoutedTeams',
   'addScoutedTeams',
   'clearScoutedTeams',
-  'addMatch'
+  'addMatch',
+  'updateMatchElement'
 ])
 
 export const interfaceGetters = {
@@ -50,5 +51,6 @@ export const templatesActions = mapActions([
   'updateCurrentTemplate',
   'updateCurrentSelectedTemplateIndex',
   'updateCurrentActiveTemplate',
-  'updateCurrentActiveTemplateIndex'
+  'updateCurrentActiveTemplateIndex',
+  'updateElement'
 ])

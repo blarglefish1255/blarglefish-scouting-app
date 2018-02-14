@@ -32,7 +32,7 @@
                 name="fa-share-square"
                 style="margin-right: 5px"
               />
-              Export
+              Export Team Info
             </q-item>
           </q-popover>
         </q-btn>
@@ -68,7 +68,9 @@ import {
   interfaceGetters,
   scoutingGetters
 } from '@state/helpers'
+
 import GameScouting from './game-scouting'
+
 export default {
   components: {
     GameScouting,
@@ -107,7 +109,14 @@ export default {
       Dialog.create({
         title: 'Export',
         stackButtons: true,
-        buttons: ['Close']
+        buttons: [
+          {
+            label: 'Excel',
+            handler: () => {
+              console.log('here')
+            }
+          }
+        ]
       })
     }
   }

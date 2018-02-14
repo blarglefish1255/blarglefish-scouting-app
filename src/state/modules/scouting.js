@@ -18,6 +18,14 @@ export default {
       state.scoutedTeams[
         state.scoutedTeams.indexOf(matchInformation.team)
       ].matches.push(matchInformation.template)
+    },
+    UPDATE_MATCH(state, matchInformation) {
+      state.scoutedTeams[
+        state.scoutedTeams.indexOf(matchInformation.team)
+      ].matches[matchInformation.currentMatchIndex].elements[
+        matchInformation.elementIndex
+      ].value =
+        matchInformation.value
     }
   },
   actions: {
@@ -50,6 +58,11 @@ export default {
     addMatch({ state, commit }, matchInformation) {
       commit('ADD_MATCH', matchInformation)
       LocalStorage.set('scoutedTeams', state.scoutedTeams)
+    },
+    updateMatchElement({ state, commit }, matchInformation) {
+      commit('UPDATE_MATCH', matchInformation)
+      LocalStorage.set('scoutedTeams', state.scoutedTeams)
+      console.log(state.scoutedTeams)
     }
   }
 }
