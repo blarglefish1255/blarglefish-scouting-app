@@ -22,7 +22,9 @@
         <Stopwatch
           v-if="element.type === 'stopwatch'"
           :label="element.label"
+          :duration-in-seconds="element.value"
           :color="theme"
+          @change="updateElement({ event: $event, index: index })"
         />
         <q-select
           v-if="element.type === 'selector'"
@@ -71,6 +73,7 @@ export default {
   methods: {
     ...templatesActions,
     updateElement(event) {
+      console.log(event)
       this.$emit('change', { value: event.event, index: event.index })
     }
   }

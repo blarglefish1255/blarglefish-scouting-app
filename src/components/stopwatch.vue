@@ -2,7 +2,7 @@
   <div>
     <q-input
       :stack-label="label"
-      v-model="durationInSeconds"
+      v-model="duration"
       readonly
     />
     <q-btn
@@ -22,6 +22,10 @@ export default {
     QInput
   },
   props: {
+    durationInSeconds: {
+      type: Number,
+      default: 0
+    },
     label: {
       type: String,
       required: true
@@ -34,8 +38,8 @@ export default {
   data() {
     return {
       startTime: null,
+      duration: this.durationInSeconds,
       endTime: null,
-      durationInSeconds: '00:00:00',
       running: false
     }
   },
@@ -49,7 +53,8 @@ export default {
 
       this.running = false
       this.endTime = Date.now()
-      this.durationInSeconds = (this.endTime - this.startTime) / 1000
+      this.duration = (this.endTime - this.startTime) / 1000
+      this.$emit('change', `${this.duration.toString()}s`)
     },
     getButtonValue() {
       if (this.running) {
