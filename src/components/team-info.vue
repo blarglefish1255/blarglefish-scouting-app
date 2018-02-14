@@ -20,7 +20,8 @@
             link
           >
             <q-item @click="addMatchToTeam">Add Match</q-item>
-            <q-item @click="exportInformation">Export</q-item>
+            <q-item @click="exportCurrentMatch">Export Current Match</q-item>
+            <q-item @click="exportMatches">Export All Matches</q-item>
           </q-list>
         </q-popover>
       </q-btn>
@@ -134,7 +135,34 @@ export default {
       }
       this.updateMatchElement(matchInformation)
     },
-    exportInformation() {
+    exportCurrentMatch() {
+      Dialog.create({
+        title: 'Export',
+        stackButtons: true,
+        buttons: [
+          {
+            label: 'Excel',
+            handler: () => {
+              let csv = convert({
+                data: this.currentSelectedTeam.matches[this.selectedMatch]
+                  .elements
+              })
+              let hiddenElement = document.createElement('a')
+              hiddenElement.href =
+                'data:text/csv;charset=utf-8,' + encodeURI(csv)
+              hiddenElement.target = '_blank'
+              hiddenElement.download = `${
+                this.currentSelectedTeam.team_number
+              }-${this.currentSelectedTeam.nickname}-${new Date(
+                Date.now()
+              )}.csv`
+              hiddenElement.click()
+            }
+          }
+        ]
+      })
+    },
+    exportMatches() {
       Dialog.create({
         title: 'Export',
         stackButtons: true,
