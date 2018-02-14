@@ -3,6 +3,10 @@
 
 This and others READMEs in the repo serve as living documents and the source of truth for our development practices.
 
+## Resources
+For more information about how what to do to the app to improve as well as where to find information,
+check [Resources.md]()
+
 ## Development
 
 ## Standard Process
