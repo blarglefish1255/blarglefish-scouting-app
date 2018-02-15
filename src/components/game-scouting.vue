@@ -59,25 +59,55 @@ export default {
       this.$router.push('/team-info')
     },
     addTeam() {
-      Dialog.create({
-        title: 'Add Team',
-        form: {
-          number: {
-            type: 'text',
-            label: 'Number',
-            model: ''
-          }
-        },
-        buttons: [
-          'Cancel',
-          {
-            label: 'Add',
-            handler: data => {
-              this.addScoutedTeams(data.number)
+      if (navigator.onLine) {
+        Dialog.create({
+          title: 'Add Team',
+          form: {
+            number: {
+              type: 'text',
+              label: 'Number',
+              model: ''
             }
-          }
-        ]
-      })
+          },
+          buttons: [
+            'Cancel',
+            {
+              label: 'Add',
+              handler: data => {
+                this.addScoutedTeams(data.number)
+              }
+            }
+          ]
+        })
+      } else {
+        Dialog.create({
+          title: 'Add Team',
+          form: {
+            number: {
+              type: 'text',
+              label: 'Number',
+              model: ''
+            },
+            nickname: {
+              type: 'text',
+              label: 'Name',
+              model: ''
+            }
+          },
+          buttons: [
+            'Cancel',
+            {
+              label: 'Add',
+              handler: data => {
+                this.addScoutedTeams({
+                  team_number: data.number,
+                  nickname: data.nickname
+                })
+              }
+            }
+          ]
+        })
+      }
     }
   }
 }

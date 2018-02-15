@@ -40,16 +40,26 @@ export default {
 
       commit('INIT_SCOUTED_TEAMS', scoutedTeams)
     },
-    addScoutedTeams({ state, commit, dispatch }, newScoutedTeamNumber) {
-      dispatch('getTeamAttributes', newScoutedTeamNumber).then(team => {
+    addScoutedTeams({ state, commit, dispatch }, teamInfo) {
+      if (navigator.onLine) {
+        dispatch('getTeamAttributes', teamInfo.team_number).then(team => {
+          const teamObject = {
+            ...team,
+            matches: []
+          }
+
+          commit('ADD_SCOUTED_TEAMS', teamObject)
+          LocalStorage.set('scoutedTeams', state.scoutedTeams)
+        })
+      } else {
         const teamObject = {
-          ...team,
+          ...teamInfo,
           matches: []
         }
 
         commit('ADD_SCOUTED_TEAMS', teamObject)
         LocalStorage.set('scoutedTeams', state.scoutedTeams)
-      })
+      }
     },
     clearScoutedTeams({ commit }) {
       commit('CLEAR_SCOUTED_TEAMS')
