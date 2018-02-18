@@ -23,6 +23,7 @@ export const scoutingActions = mapActions([
   'addScoutedTeams',
   'clearScoutedTeams',
   'addMatch',
+  'deleteScoutedTeam',
   'updateMatchElement'
 ])
 

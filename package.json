@@ -16,6 +16,7 @@
     "cuid": "^2.0.2",
     "eslint-config-prettier": "^2.9.0",
     "eslint-plugin-vue": "^4.2.0",
+    "lodash": "^4.17.5",
     "ping": "^0.2.2",
     "prettier": "^1.10.2",
     "quasar-extras": "0.x",

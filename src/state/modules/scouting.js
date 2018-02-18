@@ -1,4 +1,5 @@
 import { LocalStorage } from 'quasar'
+import compact from 'lodash/compact'
 
 export default {
   state: {
@@ -13,6 +14,10 @@ export default {
     },
     CLEAR_SCOUTED_TEAMS(state) {
       state.scoutedTeams = []
+    },
+    DELETE_SCOUTED_TEAM(state, index) {
+      state.scoutedTeams[index] = null
+      state.scoutedTeams = compact(state.scoutedTeams)
     },
     ADD_MATCH(state, matchInformation) {
       state.scoutedTeams[
@@ -64,6 +69,10 @@ export default {
     clearScoutedTeams({ commit }) {
       commit('CLEAR_SCOUTED_TEAMS')
       LocalStorage.remove('scoutedTeams')
+    },
+    deleteScoutedTeam({ state, commit }, index) {
+      commit('DELETE_SCOUTED_TEAM', index)
+      LocalStorage.set('scoutedTeams', state.scoutedTeams)
     },
     addMatch({ state, commit }, matchInformation) {
       commit('ADD_MATCH', matchInformation)

@@ -1,12 +1,20 @@
 <template>
   <div>
     <q-list
-      v-for="team of filteredTeams"
+      v-for="(team, index) of filteredTeams"
       :key="team.key"
       highlight
     >
-      <q-item @click="goToTeamInfo(team)">
+      <q-item
+        @click.self="goToTeamInfo(team)"
+      >
         {{ team.team_number + ' ' + team.nickname }}
+        <q-btn
+          flat
+          @click="handler(index)"
+        >
+          <q-icon name="fa-times"/>
+        </q-btn>
       </q-item>
     </q-list>
     <q-fixed-position
@@ -24,7 +32,15 @@
 </template>
 
 <script>
-import { Dialog, QBtn, QFixedPosition, QItem, QLayout, QList } from 'quasar'
+import {
+  Dialog,
+  QBtn,
+  QFixedPosition,
+  QIcon,
+  QItem,
+  QLayout,
+  QList
+} from 'quasar'
 import {
   interfaceGetters,
   scoutingGetters,
@@ -36,6 +52,7 @@ export default {
   components: {
     QBtn,
     QFixedPosition,
+    QIcon,
     QItem,
     QLayout,
     QList
@@ -54,6 +71,21 @@ export default {
   methods: {
     ...researchActions,
     ...scoutingActions,
+    handler(index) {
+      Dialog.create({
+        title: 'Delete Team',
+        message: 'Are you sure you want to delete this team?',
+        buttons: [
+          'No',
+          {
+            label: 'Yes',
+            handler: data => {
+              this.deleteScoutedTeam(index)
+            }
+          }
+        ]
+      })
+    },
     goToTeamInfo(team) {
       this.updateCurrentSelectedTeam(team)
       this.$router.push('/team-info')
@@ -74,7 +106,7 @@ export default {
             {
               label: 'Add',
               handler: data => {
-                this.addScoutedTeams(data.number)
+                this.addScoutedTeams({ team_number: data.number })
               }
             }
           ]
