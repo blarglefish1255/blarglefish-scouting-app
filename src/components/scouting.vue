@@ -71,6 +71,8 @@ import {
 
 import GameScouting from './game-scouting'
 
+import convert from '@services/convertToCSV'
+
 export default {
   components: {
     GameScouting,
@@ -112,7 +114,19 @@ export default {
         buttons: [
           {
             label: 'Excel',
-            handler: () => {}
+            handler: () => {
+              let csv = convert({
+                data: this.scoutedTeams
+              })
+              let hiddenElement = document.createElement('a')
+              hiddenElement.href =
+                'data:text/csv;charset=utf-8,' + encodeURI(csv)
+              hiddenElement.target = '_blank'
+              hiddenElement.download = `scouted-teams-${new Date(
+                Date.now()
+              )}.csv`
+              hiddenElement.click()
+            }
           }
         ]
       })
