@@ -19,7 +19,6 @@
     "**/.DS_Store": true,
     "**/db.json": true,
     "**/*.log.*": true,
-    "**/dist": true,
     "**/tmp": true,
     "**/cache": true,
     "**/test_assets": true,
