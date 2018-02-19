@@ -81,7 +81,6 @@ export default {
     updateMatchElement({ state, commit }, matchInformation) {
       commit('UPDATE_MATCH', matchInformation)
       LocalStorage.set('scoutedTeams', state.scoutedTeams)
-      console.log(state.scoutedTeams)
     }
   }
 }

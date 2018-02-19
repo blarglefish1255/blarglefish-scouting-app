@@ -73,7 +73,6 @@ export default {
   methods: {
     ...templatesActions,
     updateElement(event) {
-      console.log(event)
       this.$emit('change', { value: event.event, index: event.index })
     }
   }

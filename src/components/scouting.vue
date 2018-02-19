@@ -112,9 +112,7 @@ export default {
         buttons: [
           {
             label: 'Excel',
-            handler: () => {
-              console.log('here')
-            }
+            handler: () => {}
           }
         ]
       })
