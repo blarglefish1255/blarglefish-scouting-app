@@ -7,13 +7,17 @@
     >
       <q-item
         @click.self="goToTeamInfo(team)"
+        class="team-item"
       >
         {{ team.team_number + ' ' + team.nickname }}
         <q-btn
           flat
+          class="delete-icon"
           @click="handler(index)"
         >
-          <q-icon name="fa-times"/>
+          <q-icon
+            name="fa-times"
+          />
         </q-btn>
       </q-item>
     </q-list>
@@ -144,3 +148,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.team-item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow: hidden;
+}
+</style>

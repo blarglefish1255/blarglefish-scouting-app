@@ -30,6 +30,7 @@
         <q-icon
           v-if="template.active"
           name="fa-circle"
+          class="active-template-icon"
         />
         <q-btn
           v-else
@@ -143,3 +144,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.active-template-icon {
+  margin-left: 10px;
+}
+</style>
